@@ -24,7 +24,6 @@ class MultiAuthServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerInstallCommand();
-        $this->registerLayoutCommand();
     }
 
     /**
