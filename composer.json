@@ -1,0 +1,23 @@
+{
+    "name": "hesto/adminlte",
+    "description": "Admin LTE Installation package for Laravel 5",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hesto",
+            "email": "losiakp@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "hesto/core": "1.0.*"
+    },    
+    "autoload": {
+        "classmap": [
+            "src/commands"
+        ],
+        "psr-4": {
+            "Hesto\\Adminlte\\": "src/"
+        }
+    }
+}
