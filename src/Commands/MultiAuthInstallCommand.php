@@ -68,7 +68,9 @@ class MultiAuthInstallCommand extends InstallCommand
         $middleware = new SplFileInfo(__DIR__ . '/../../resources/Middleware/RedirectIfNotAdmin.php');
         $path = base_path() . '/app/Http/Middleware/RedirectIfNotAdmin.php';
 
-        $this->putFile($path, $middleware);
+        if($this->putFile($path, $middleware)) {
+            $this->info('Copied: ' . $path);
+        }
     }
 
     /**
