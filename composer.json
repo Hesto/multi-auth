@@ -1,6 +1,6 @@
 {
-    "name": "hesto/adminlte",
-    "description": "Admin LTE Installation package for Laravel 5",
+    "name": "hesto/multi-auth",
+    "description": "Multi Auth Installation package for Laravel 5",
     "license": "MIT",
     "authors": [
         {
@@ -17,7 +17,7 @@
             "src/commands"
         ],
         "psr-4": {
-            "Hesto\\Adminlte\\": "src/"
+            "Hesto\\MultiAuth\\": "src/"
         }
     }
 }
