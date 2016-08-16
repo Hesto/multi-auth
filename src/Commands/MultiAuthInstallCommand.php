@@ -31,9 +31,8 @@ class MultiAuthInstallCommand extends InstallCommand
     public function fire()
     {
         $this->installControllers();
-        $this->installGuard();
+        $this->installAuthConfig();
         $this->installMiddleware();
-
     }
 
     /**
@@ -47,15 +46,17 @@ class MultiAuthInstallCommand extends InstallCommand
     }
 
     /**
-     * Install guard and passwords.
+     * Install auth config.
      *
      */
-    public function installGuard()
+    public function installAuthConfig()
     {
-//        $gulpfile = new SplFileInfo(__DIR__ . '/../../resources/gulpfile.js');
-//        $path = base_path() . '/gulpfile.js';
-//
-//        $this->putFile($path, $gulpfile);
+        $middleware = new SplFileInfo(__DIR__ . '/../../resources/AuthConfig/auth.php');
+        $path = base_path() . '/config/auth.php';
+
+        if($this->putFile($path, $middleware)) {
+            $this->info('Copied: ' . $path);
+        }
     }
 
     /**
