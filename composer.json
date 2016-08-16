@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "hesto/core": "1.0.*"
+        "hesto/core": "^1.0"
     },    
     "autoload": {
         "classmap": [
