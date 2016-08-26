@@ -1,0 +1,4 @@
+'{{pluralSnake}}' => [
+    'driver' => 'eloquent',
+    'model' => App\{{singularCamel}}::class,
+],

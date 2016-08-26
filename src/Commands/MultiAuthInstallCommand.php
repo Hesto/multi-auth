@@ -31,7 +31,6 @@ class MultiAuthInstallCommand extends InstallCommand
     public function fire()
     {
         $this->installControllers();
-        $this->installAuthConfig();
         $this->installMiddleware();
     }
 
@@ -43,20 +42,6 @@ class MultiAuthInstallCommand extends InstallCommand
     {
         $files = $this->files->allFiles(__DIR__ . '/../../resources/Controllers/');
         $this->installFiles('/app/Http/Controllers/', $files);
-    }
-
-    /**
-     * Install auth config.
-     *
-     */
-    public function installAuthConfig()
-    {
-        $middleware = new SplFileInfo(__DIR__ . '/../../resources/AuthConfig/auth.php');
-        $path = base_path() . '/config/auth.php';
-
-        if($this->putFile($path, $middleware)) {
-            $this->info('Copied: ' . $path);
-        }
     }
 
     /**

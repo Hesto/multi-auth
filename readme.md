@@ -7,12 +7,12 @@
 ### Step 1: Install Through Composer
 
 ```
-composer require hesto/adminlte
+composer require hesto/multi-auth
 ```
 
 ### Step 2: Add the Service Provider
 
-You'll only want to use these package for local development, so you don't want to update the production  `providers` array in `config/app.php`. Instead, add the provider in `app/Providers/AppServiceProvider.php`, like so:
+You'll only want to use these package for local development, so you don't want to update the production `providers` array in `config/app.php`. Instead, add the provider in `app/Providers/AppServiceProvider.php`, like so:
 
 ```php
 public function register()
@@ -29,4 +29,10 @@ public function register()
 php artisan multi-auth:install
 ```
 
-### Step 4: Add new guards
+### Step 4: Add Middleware
+
+To `app/Http/Kernel.php` in `$routeMiddleware` array add
+
+```
+'admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
+```

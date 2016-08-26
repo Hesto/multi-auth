@@ -1,6 +1,6 @@
 {
     "name": "hesto/multi-auth",
-    "description": "Multi Auth Installation package for Laravel 5",
+    "description": "Multi Auth for Laravel 5.3",
     "license": "MIT",
     "authors": [
         {
