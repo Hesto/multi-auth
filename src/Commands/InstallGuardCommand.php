@@ -1,8 +1,8 @@
 <?php
 
-namespace Hesto\Core\Commands;
+namespace Hesto\MultiAuth\Commands;
 
-use Illuminate\Filesystem\Filesystem;
+use Hesto\Core\Commands\ReplaceContentCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 
