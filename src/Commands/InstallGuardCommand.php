@@ -86,16 +86,4 @@ class InstallGuardCommand extends ReplaceContentCommand
     {
         return $this->info('Content changed in: ' . $filePath);
     }
-
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['force', 'f', InputOption::VALUE_NONE, 'Force override existing files'],
-        ];
-    }
 }
