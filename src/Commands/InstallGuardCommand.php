@@ -34,15 +34,12 @@ class InstallGuardCommand extends ReplaceContentCommand
 
     public function searchFor()
     {
-        return "'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],";
+        return "\t\t'guards' => [";
     }
 
     public function replaceWith()
     {
-        return __DIR__ . '/../stubs/config/guard.stub';
+        return $this->files->get(__DIR__ . '/../stubs/config/guards.stub');
     }
 
     /**
@@ -78,7 +75,9 @@ class InstallGuardCommand extends ReplaceContentCommand
      */
     protected function compile($content)
     {
-        $content = str_replace($this->searchFor(), $this->replaceWith(), $content);
+        $stub = $this->searchFor() . $this->replaceNames($this->replaceWith());
+
+        $content = str_replace($this->searchFor(), $stub, $content);
 
         return $content;
     }

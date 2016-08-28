@@ -45,7 +45,7 @@ class MultiAuthServiceProvider extends ServiceProvider
     private function registerInstallGuardCommand()
     {
         $this->app->singleton('command.hesto.multi-auth.guard', function ($app) {
-            return $app['Hesto\MultiAuth\Commands\MultiAuthInstallCommand'];
+            return $app['Hesto\MultiAuth\Commands\InstallGuardCommand'];
         });
 
         $this->commands('command.hesto.multi-auth.guard');

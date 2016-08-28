@@ -1,4 +1,4 @@
-'{{pluralSnake}}' => [
-    'driver' => 'session',
-    'provider' => '{{pluralSnake}}',
-],
+\n\t'{{pluralSnake}}' => [\n
+\t\t'driver' => 'session',\n
+\t\t'provider' => '{{pluralSnake}}',\n
+\t],\n
