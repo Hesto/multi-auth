@@ -61,7 +61,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
         $name = $this->getNameInput();
 
         $path = '/resources/views/' . str_singular($name) . '/';
-        $views = new SplFileInfo(__DIR__ . '/../stubs/views/');
+        $views = __DIR__ . '/../stubs/views/';
 
         if($this->installFiles($path, $this->files->allFiles($views))) {
             $this->info('Copied: ' . $path);
