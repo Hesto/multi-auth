@@ -85,7 +85,7 @@ class MultiAuthServiceProvider extends ServiceProvider
     private function registerAuthViewsInstallCommand()
     {
         $this->app->singleton('command.hesto.multi-auth.views', function ($app) {
-            return $app['Hesto\MultiAuth\Commands\AuthModelInstallCommand'];
+            return $app['Hesto\MultiAuth\Commands\AuthViewsInstallCommand'];
         });
 
         $this->commands('command.hesto.multi-auth.views');
