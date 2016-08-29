@@ -1,0 +1,3 @@
+Route::get('{{singularSlug}}/login', '{{singularClass}}Auth\LoginController@showLoginForm');
+Route::post('{{singularSlug}}/login', '{{singularClass}}Auth\LoginController@login');
+Route::get('{{singularSlug}}/logout', '{{singularClass}}Auth\LoginController@logout');
