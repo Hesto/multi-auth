@@ -27,18 +27,24 @@ class InstallProviderCommand extends ReplaceContentCommand
      *
      * @return string
      */
-    public function getPath()
+    public function getFiles()
     {
-        return '/config/auth.php';
-    }
-
-    public function searchFor()
-    {
-        return "'providers' => [";
-    }
-
-    public function replaceWith()
-    {
-        return __DIR__ . '/../stubs/config/providers.stub';
+        return [
+            'guard' => [
+                'path' => '/config/auth.php',
+                'search' => "'guards' => [",
+                'replace' => __DIR__ . '/../stubs/config/guards.stub',
+            ],
+            'provider' => [
+                'path' => '/config/auth.php',
+                'search' => "'providers' => [",
+                'replace' => __DIR__ . '/../stubs/config/providers.stub',
+            ],
+            'kernel' => [
+                'path' => '/app/Http/Kernel.php',
+                'search' => 'protected $routeMiddleware = [',
+                'replace' => __DIR__ . '/../stubs/Middleware/Kernel.stub',
+            ],
+        ];
     }
 }
