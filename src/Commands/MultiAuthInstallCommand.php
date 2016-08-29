@@ -30,18 +30,7 @@ class MultiAuthInstallCommand extends InstallCommand
      */
     public function fire()
     {
-        $this->installControllers();
-        $this->installMiddleware();
-    }
-
-    /**
-     * Install Admin Auth Controllers.
-     *
-     */
-    public function installControllers()
-    {
-        $files = $this->files->allFiles(__DIR__ . '/../../resources/Controllers/');
-        $this->installFiles('/app/Http/Controllers/', $files);
+        $this->installWebRoutes();
     }
 
     /**
@@ -49,12 +38,12 @@ class MultiAuthInstallCommand extends InstallCommand
      *
      * @return bool
      */
-    public function installMiddleware()
+    public function installWebRoutes()
     {
-        $middleware = new SplFileInfo(__DIR__ . '/../../resources/Middleware/RedirectIfNotAdmin.php');
-        $path = base_path() . '/app/Http/Middleware/RedirectIfNotAdmin.php';
+        $path = base_path() . '/routes/web.php';
+        $file = new SplFileInfo(__DIR__ . '/../stubs/routes/web.stub');
 
-        if($this->putFile($path, $middleware)) {
+        if($this->appendFile($path, $file)) {
             $this->info('Copied: ' . $path);
         }
     }
