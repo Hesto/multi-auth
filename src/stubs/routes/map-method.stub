@@ -8,7 +8,7 @@
     protected function map{{singularClass}}Routes()
     {
         Route::group([
-            'middleware' => ['{{singularSnake}}', 'web'],
+            'middleware' => ['web'],
             'namespace' => $this->namespace,
         ], function ($router) {
             require base_path('routes/{{singularSlug}}.php');

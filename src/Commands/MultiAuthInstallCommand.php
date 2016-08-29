@@ -54,7 +54,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
 
         $this->installWebRoutes();
 
-        $this->info('Multi Auth with ' . $name . ' guard successfully installed.');
+        $this->info('Multi Auth with ' . ucfirst($name) . ' guard successfully installed.');
     }
 
     /**
@@ -67,8 +67,6 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
         $path = base_path() . '/routes/web.php';
         $file = new SplFileInfo(__DIR__ . '/../stubs/routes/web.stub');
 
-        if($this->appendFile($path, $file)) {
-            $this->info('Routes add in: ' . $path);
-        }
+        $this->appendFile($path, $file);
     }
 }
