@@ -37,7 +37,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
     }
 
     /**
-     * Install Middleware.
+     * Install Web Routes.
      *
      * @return bool
      */
@@ -49,6 +49,34 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
         if($this->appendFile($path, $file)) {
             $this->info('Copied: ' . $path);
         }
+    }
+
+    /**
+     * Install Web Routes.
+     *
+     * @return bool
+     */
+    public function installViews()
+    {
+        $name = $this->getNameInput();
+
+        $path = '/resources/views/' . str_singular($name) . '/';
+        $views = new SplFileInfo(__DIR__ . '/../stubs/views/');
+
+        if($this->installFiles($path, $this->files->allFiles($views))) {
+            $this->info('Copied: ' . $path);
+        }
+    }
+
+    /**
+     * Get file extension.
+     *
+     * @param $file
+     * @return bool
+     */
+    protected function getExtension($file)
+    {
+        return '.php';
     }
 
     /**
