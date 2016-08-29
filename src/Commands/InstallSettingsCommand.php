@@ -2,25 +2,25 @@
 
 namespace Hesto\MultiAuth\Commands;
 
-use Hesto\Core\Commands\ReplaceContentCommand;
+use Hesto\Core\Commands\AppendContentCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 
-class InstallProviderCommand extends ReplaceContentCommand
+class InstallProviderCommand extends AppendContentCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'multi-auth:provider';
+    protected $name = 'multi-auth:settings';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description;
+    protected $description = 'Install settings in files';
 
     /**
      * Get the destination path.
@@ -33,17 +33,17 @@ class InstallProviderCommand extends ReplaceContentCommand
             'guard' => [
                 'path' => '/config/auth.php',
                 'search' => "'guards' => [",
-                'replace' => __DIR__ . '/../stubs/config/guards.stub',
+                'append' => __DIR__ . '/../stubs/config/guards.stub',
             ],
             'provider' => [
                 'path' => '/config/auth.php',
                 'search' => "'providers' => [",
-                'replace' => __DIR__ . '/../stubs/config/providers.stub',
+                'append' => __DIR__ . '/../stubs/config/providers.stub',
             ],
             'kernel' => [
                 'path' => '/app/Http/Kernel.php',
                 'search' => 'protected $routeMiddleware = [',
-                'replace' => __DIR__ . '/../stubs/Middleware/Kernel.stub',
+                'append' => __DIR__ . '/../stubs/Middleware/Kernel.stub',
             ],
         ];
     }
