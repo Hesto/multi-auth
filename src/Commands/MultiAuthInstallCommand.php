@@ -3,7 +3,7 @@
 namespace Hesto\MultiAuth\Commands;
 
 use Hesto\Core\Commands\InstallAndReplaceCommand;
-use Symfony\Component\Console\Input\InputOption;
+use Illuminate\Support\Facades\Artisan;
 use SplFileInfo;
 
 
@@ -30,7 +30,31 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
      */
     public function fire()
     {
+        $name = $this->getNameInput();
+
+        Artisan::call('multi-auth:settings', [
+            'name' => $name,
+            '--force' => true
+        ]);
+
+        Artisan::call('multi-auth:files', [
+            'name' => $name,
+            '--force' => true
+        ]);
+
+        Artisan::call('multi-auth:model', [
+            'name' => $name,
+            '--force' => true
+        ]);
+
+        Artisan::call('multi-auth:views', [
+            'name' => $name,
+            '--force' => true
+        ]);
+
         $this->installWebRoutes();
+        
+        $this->info('Multi Auth with ' . $name . ' guard install successfully.');
     }
 
     /**
