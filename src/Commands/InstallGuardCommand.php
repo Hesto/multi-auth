@@ -13,7 +13,7 @@ class InstallGuardCommand extends ReplaceContentCommand
      *
      * @var string
      */
-    protected $name = 'multi-auth:provider';
+    protected $name = 'multi-auth:guard';
 
     /**
      * The console command description.
