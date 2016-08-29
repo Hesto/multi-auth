@@ -1,5 +1,6 @@
 <?php
 
-Route::get('/{{singularSlug}}', function () {
-    dd('{{singularSnake}} guard installed.');
+Route::get('/{{singularSlug}}/home', function () {
+    dd(Auth::guard('{{singularSnake}}')->user());
 });
+
