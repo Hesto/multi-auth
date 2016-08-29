@@ -33,7 +33,7 @@ class InstallAuthModelCommand extends InstallFilesCommand
 
         return [
             'model' => [
-                'path' => '/app/' . ucfirst($name) .'.php',
+                'path' => '/app/' . ucfirst(str_singualr($name)) .'.php',
                 'stub' => __DIR__ . '/../stubs/Model/Model.stub',
             ],
             'migration' => [

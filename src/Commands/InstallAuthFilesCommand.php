@@ -33,15 +33,15 @@ class InstallAuthFilesCommand extends InstallFilesCommand
 
         return [
             'routes' => [
-                'path' => '/routes/' . $name .'.php',
+                'path' => '/routes/' . str_singualr($name) .'.php',
                 'stub' => __DIR__ . '/../stubs/routes/routes.stub',
             ],
             'middleware' => [
-                'path' => '/app/Http/Middleware/RedirectIfNot' . ucfirst($name) .'.php',
+                'path' => '/app/Http/Middleware/RedirectIfNot' . ucfirst(str_singualr($name)) .'.php',
                 'stub' => __DIR__ . '/../stubs/Middleware/Middleware.stub',
             ],
             'login_controller' => [
-                'path' => '/app/Http/Controllers/' . ucfirst($name) . 'Auth/' . 'LoginController.php',
+                'path' => '/app/Http/Controllers/' . ucfirst(str_singualr($name)) . 'Auth/' . 'LoginController.php',
                 'stub' => __DIR__ . '/../stubs/Controllers/LoginController.stub',
             ],
         ];

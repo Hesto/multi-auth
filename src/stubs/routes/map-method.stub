@@ -5,7 +5,7 @@
      *
      * @return void
      */
-    protected function map{{Class}}Routes()
+    protected function map{{singularClass}}Routes()
     {
         Route::group([
             'middleware' => ['{{singularSnake}}', 'web'],

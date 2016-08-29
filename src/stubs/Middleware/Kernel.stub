@@ -1,2 +1,2 @@
 
-        '{{singularSnake}}' => \App\Http\Middleware\RedirectIfNot{{Class}}::class,
+        '{{singularSnake}}' => \App\Http\Middleware\RedirectIfNot{{singularClass}}::class,
