@@ -30,7 +30,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
      */
     public function fire()
     {
-        $name = $this->getNameInput();
+        $name = mb_strtolower($this->getNameInput());
 
         Artisan::call('multi-auth:settings', [
             'name' => $name,
