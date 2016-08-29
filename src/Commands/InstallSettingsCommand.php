@@ -45,6 +45,12 @@ class InstallProviderCommand extends AppendContentCommand
                 'search' => 'protected $routeMiddleware = [',
                 'append' => __DIR__ . '/../stubs/Middleware/Kernel.stub',
             ],
+            'map_register' => [
+                'path' => '/app/Providers/RouteServiceProvider.php',
+                'search' => 'public function map()\r\t{',
+                'append' => __DIR__ . '/../stubs/routes/map-register.stub',
+            ],
+
         ];
     }
 }
