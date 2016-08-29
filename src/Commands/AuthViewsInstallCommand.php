@@ -7,14 +7,14 @@ use Symfony\Component\Console\Input\InputOption;
 use SplFileInfo;
 
 
-class MultiAuthInstallCommand extends InstallAndReplaceCommand
+class AuthViewsInstallCommand extends InstallAndReplaceCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'multi-auth:install';
+    protected $name = 'multi-auth:views';
 
     /**
      * The console command description.
@@ -30,7 +30,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
      */
     public function fire()
     {
-        $this->installWebRoutes();
+        $this->installViews();
     }
 
     /**
@@ -38,13 +38,26 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
      *
      * @return bool
      */
-    public function installWebRoutes()
+    public function installViews()
     {
-        $path = base_path() . '/routes/web.php';
-        $file = new SplFileInfo(__DIR__ . '/../stubs/routes/web.stub');
+        $name = $this->getNameInput();
 
-        if($this->appendFile($path, $file)) {
-            $this->info('Routes add in: ' . $path);
+        $path = '/resources/views/' . str_singular($name) . '/';
+        $views = __DIR__ . '/../stubs/views/';
+
+        if($this->installFiles($path, $this->files->allFiles($views))) {
+            $this->info('Copied: ' . $path);
         }
+    }
+
+    /**
+     * Get file extension.
+     *
+     * @param $file
+     * @return bool
+     */
+    protected function getExtension($file)
+    {
+        return 'php';
     }
 }

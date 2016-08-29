@@ -6,7 +6,7 @@ use Hesto\Core\Commands\InstallFilesCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 
-class InstallAuthModelCommand extends InstallFilesCommand
+class AuthModelInstallCommand extends InstallFilesCommand
 {
     /**
      * The console command name.

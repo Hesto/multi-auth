@@ -24,9 +24,10 @@ class MultiAuthServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerInstallCommand();
-        $this->registerInstallSettingsCommand();
-        $this->registerInstallAuthFilesCommand();
-        $this->registerInstallAuthModelCommand();
+        $this->registerAuthSettingsInstallCommand();
+        $this->registerAuthFilesInstallCommand();
+        $this->registerAuthModelInstallCommand();
+        $this->registerAuthViewsInstallCommand();
         //$this->registerInstallMiddlewareCommand();
     }
 
@@ -45,10 +46,10 @@ class MultiAuthServiceProvider extends ServiceProvider
     /**
      * Register the adminlte:install command.
      */
-    private function registerInstallSettingsCommand()
+    private function registerAuthSettingsInstallCommand()
     {
         $this->app->singleton('command.hesto.multi-auth.settings', function ($app) {
-            return $app['Hesto\MultiAuth\Commands\InstallSettingsCommand'];
+            return $app['Hesto\MultiAuth\Commands\AuthSettingsInstallCommand'];
         });
 
         $this->commands('command.hesto.multi-auth.settings');
@@ -57,10 +58,10 @@ class MultiAuthServiceProvider extends ServiceProvider
     /**
      * Register the adminlte:install command.
      */
-    private function registerInstallAuthFilesCommand()
+    private function registerAuthFilesInstallCommand()
     {
         $this->app->singleton('command.hesto.multi-auth.files', function ($app) {
-            return $app['Hesto\MultiAuth\Commands\InstallAuthFilesCommand'];
+            return $app['Hesto\MultiAuth\Commands\AuthFilesInstallCommand'];
         });
 
         $this->commands('command.hesto.multi-auth.files');
@@ -69,13 +70,25 @@ class MultiAuthServiceProvider extends ServiceProvider
     /**
      * Register the adminlte:install command.
      */
-    private function registerInstallAuthModelCommand()
+    private function registerAuthModelInstallCommand()
     {
         $this->app->singleton('command.hesto.multi-auth.model', function ($app) {
-            return $app['Hesto\MultiAuth\Commands\InstallAuthModelCommand'];
+            return $app['Hesto\MultiAuth\Commands\AuthModelInstallCommand'];
         });
 
         $this->commands('command.hesto.multi-auth.model');
+    }
+
+    /**
+     * Register the adminlte:install command.
+     */
+    private function registerAuthViewsInstallCommand()
+    {
+        $this->app->singleton('command.hesto.multi-auth.views', function ($app) {
+            return $app['Hesto\MultiAuth\Commands\AuthModelInstallCommand'];
+        });
+
+        $this->commands('command.hesto.multi-auth.views');
     }
 
 }
