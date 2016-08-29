@@ -48,12 +48,12 @@ class AuthSettingsInstallCommand extends AppendContentCommand
                 'stub' => __DIR__ . '/../stubs/config/passwords.stub',
                 'prefix' => false,
             ],
-            'kernel' => [
-                'path' => '/app/Http/Kernel.php',
-                'search' => 'protected $routeMiddleware = [',
-                'stub' => __DIR__ . '/../stubs/Middleware/Kernel.stub',
-                'prefix' => false,
-            ],
+//            'kernel' => [
+//                'path' => '/app/Http/Kernel.php',
+//                'search' => 'protected $routeMiddleware = [',
+//                'stub' => __DIR__ . '/../stubs/Middleware/Kernel.stub',
+//                'prefix' => false,
+//            ],
             'map_register' => [
                 'path' => '/app/Providers/RouteServiceProvider.php',
                 'search' => '$this->mapWebRoutes();',
