@@ -47,7 +47,7 @@ class InstallSettingsCommand extends AppendContentCommand
             ],
             'map_register' => [
                 'path' => '/app/Providers/RouteServiceProvider.php',
-                'search' => 'public function map()\r\t{',
+                'search' => '$this->mapWebRoutes();',
                 'append' => __DIR__ . '/../stubs/routes/map-register.stub',
             ],
             'map_method' => [
