@@ -1,5 +1,5 @@
 
-        '{{pluralSnake}}' => [
+        '{{singularSnake}}' => [
             'driver' => 'session',
             'provider' => '{{pluralSnake}}',
         ],
