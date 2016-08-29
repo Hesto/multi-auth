@@ -48,6 +48,14 @@ class AuthFilesInstallCommand extends InstallFilesCommand
                 'path' => '/app/Http/Controllers/' . ucfirst(str_singular($name)) . 'Auth/' . 'RegisterController.php',
                 'stub' => __DIR__ . '/../stubs/Controllers/RegisterController.stub',
             ],
+            'forgot_password_controller' => [
+                'path' => '/app/Http/Controllers/' . ucfirst(str_singular($name)) . 'Auth/' . 'ForgotPasswordController.php',
+                'stub' => __DIR__ . '/../stubs/Controllers/ForgotPasswordController.stub',
+            ],
+            'reset_password_controller' => [
+                'path' => '/app/Http/Controllers/' . ucfirst(str_singular($name)) . 'Auth/' . 'ResetPasswordController.php',
+                'stub' => __DIR__ . '/../stubs/Controllers/ResetPasswordController.stub',
+            ],
         ];
     }
 }
