@@ -39,7 +39,7 @@ class InstallGuardCommand extends ReplaceContentCommand
 
     public function replaceWith()
     {
-        return $this->files->get(__DIR__ . '/../stubs/config/guards.stub');
+        return __DIR__ . '/../stubs/config/guards.stub';
     }
 
     /**
@@ -75,7 +75,9 @@ class InstallGuardCommand extends ReplaceContentCommand
      */
     protected function compile($content)
     {
-        $stub = $this->searchFor() . $this->replaceNames($this->replaceWith());
+        $string = $this->replaceNames($this->files->get($this->replaceWith()));
+
+        $stub = $this->searchFor() . $string;
 
         $content = str_replace($this->searchFor(), $stub, $content);
 
