@@ -34,6 +34,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
     public function fire()
     {
         $this->installWebRoutes();
+        $this->installViews();
     }
 
     /**
