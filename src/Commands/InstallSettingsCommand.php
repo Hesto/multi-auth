@@ -56,7 +56,7 @@ class InstallSettingsCommand extends AppendContentCommand
             ],
             'map_method' => [
                 'path' => '/app/Providers/RouteServiceProvider.php',
-                'search' => "/**\n" . '     * Define the "web" routes for the application.',
+                'search' => "    /**\n" . '     * Define the "web" routes for the application.',
                 'append' => __DIR__ . '/../stubs/routes/map-method.stub',
                 'prefix' => true,
             ],
