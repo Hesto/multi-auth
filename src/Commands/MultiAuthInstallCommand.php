@@ -2,6 +2,7 @@
 
 namespace Hesto\MultiAuth\Commands;
 
+use Hesto\Core\Traits\CanReplaceKeywords;
 use Hesto\Core\Commands\InstallCommand;
 use Symfony\Component\Console\Input\InputOption;
 use SplFileInfo;
@@ -9,6 +10,8 @@ use SplFileInfo;
 
 class MultiAuthInstallCommand extends InstallCommand
 {
+    use CanReplaceKeywords;
+
     /**
      * The console command name.
      *
@@ -46,5 +49,18 @@ class MultiAuthInstallCommand extends InstallCommand
         if($this->appendFile($path, $file)) {
             $this->info('Copied: ' . $path);
         }
+    }
+
+    /**
+     * Compile content.
+     *
+     * @param $content
+     * @return mixed
+     */
+    protected function compile($content)
+    {
+        $content = $this->replaceNames($content);
+
+        return $content;
     }
 }
