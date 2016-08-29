@@ -37,7 +37,7 @@ class AuthModelInstallCommand extends InstallFilesCommand
                 'stub' => __DIR__ . '/../stubs/Model/Model.stub',
             ],
             'migration' => [
-                'path' => '/database/migrations/create_' . date('Y_m_d_His') . '_' . str_plural(snake_case($name)) .'_table.php',
+                'path' => '/database/migrations/' . date('Y_m_d_His') . '_create_' . str_plural(snake_case($name)) .'_table.php',
                 'stub' => __DIR__ . '/../stubs/Model/migration.stub',
             ],
         ];
