@@ -20,7 +20,7 @@ class AuthFilesInstallCommand extends InstallFilesCommand
      *
      * @var string
      */
-    protected $description = 'Install settings in files';
+    protected $description = 'Install multi-auth files';
 
     /**
      * Get the destination path.

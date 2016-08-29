@@ -20,7 +20,7 @@ class AuthModelInstallCommand extends InstallFilesCommand
      *
      * @var string
      */
-    protected $description = 'Install settings in files';
+    protected $description = 'Install Authenticatable Model';
 
     /**
      * Get the destination path.

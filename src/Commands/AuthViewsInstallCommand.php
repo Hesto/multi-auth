@@ -21,7 +21,7 @@ class AuthViewsInstallCommand extends InstallAndReplaceCommand
      *
      * @var string
      */
-    protected $description = 'Install Multi Auth files into Laravel 5 project';
+    protected $description = 'Install multi-auth views';
 
     /**
      * Execute the console command.
