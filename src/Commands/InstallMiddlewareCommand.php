@@ -13,7 +13,7 @@ class InstallMiddlewareCommand extends ReplaceContentCommand
      *
      * @var string
      */
-    protected $name = 'multi-auth:middleware';
+    protected $name = 'multi-auth:kernel';
 
     /**
      * The console command description.
