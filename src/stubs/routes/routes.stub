@@ -1,0 +1,5 @@
+<?php
+
+Route::get('/{{singularSlug}}', function () {
+    dd('{{singularSnake}} guard installed.');
+});

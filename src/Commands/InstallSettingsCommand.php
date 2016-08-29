@@ -27,7 +27,7 @@ class InstallSettingsCommand extends AppendContentCommand
      *
      * @return string
      */
-    public function getFiles()
+    public function getSettings()
     {
         return [
             'guard' => [
