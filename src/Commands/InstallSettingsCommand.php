@@ -34,28 +34,32 @@ class InstallSettingsCommand extends AppendContentCommand
                 'path' => '/config/auth.php',
                 'search' => "'guards' => [",
                 'append' => __DIR__ . '/../stubs/config/guards.stub',
+                'prefix' => false,
             ],
             'provider' => [
                 'path' => '/config/auth.php',
                 'search' => "'providers' => [",
                 'append' => __DIR__ . '/../stubs/config/providers.stub',
+                'prefix' => false,
             ],
             'kernel' => [
                 'path' => '/app/Http/Kernel.php',
                 'search' => 'protected $routeMiddleware = [',
                 'append' => __DIR__ . '/../stubs/Middleware/Kernel.stub',
+                'prefix' => false,
             ],
             'map_register' => [
                 'path' => '/app/Providers/RouteServiceProvider.php',
-                'search' => '$this->mapWebRoutes();',
+                'search' => '$this->mapWebRoutes();' . '\r',
                 'append' => __DIR__ . '/../stubs/routes/map-register.stub',
+                'prefix' => false,
             ],
             'map_method' => [
                 'path' => '/app/Providers/RouteServiceProvider.php',
-                'search' => 'public function map()\r\t{',
+                'search' => "/**\n" . '     * Define the "web" routes for the application.',
                 'append' => __DIR__ . '/../stubs/routes/map-method.stub',
+                'prefix' => true,
             ],
-
         ];
     }
 }

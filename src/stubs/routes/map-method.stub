@@ -1,2 +1,17 @@
 
-       $this->map{{Class}}Routes();
+    /**
+     * Define the "{{singularSnake}}" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function map{{Class}}Routes()
+    {
+        Route::group([
+            'middleware' => ['{{singularSnake}}', 'web'],
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/singularSlug.php');
+        });
+    }
