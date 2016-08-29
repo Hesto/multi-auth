@@ -50,6 +50,11 @@ class InstallProviderCommand extends AppendContentCommand
                 'search' => 'public function map()\r\t{',
                 'append' => __DIR__ . '/../stubs/routes/map-register.stub',
             ],
+            'map_method' => [
+                'path' => '/app/Providers/RouteServiceProvider.php',
+                'search' => 'public function map()\r\t{',
+                'append' => __DIR__ . '/../stubs/routes/map-method.stub',
+            ],
 
         ];
     }
