@@ -13,7 +13,7 @@ class InstallAuthFilesCommand extends InstallFilesCommand
      *
      * @var string
      */
-    protected $name = 'multi-auth:settings';
+    protected $name = 'multi-auth:files';
 
     /**
      * The console command description.
@@ -32,7 +32,7 @@ class InstallAuthFilesCommand extends InstallFilesCommand
         $name = $this->getNameInput();
 
         return [
-            'guard' => [
+            'routes' => [
                 'path' => '/routes/' . $name .'.php',
                 'stub' => __DIR__ . '/../stubs/routes/routes.stub',
             ],
