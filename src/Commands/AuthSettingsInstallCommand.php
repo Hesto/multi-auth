@@ -50,7 +50,7 @@ class AuthSettingsInstallCommand extends AppendContentCommand
             ],
             'map_register' => [
                 'path' => '/app/Providers/RouteServiceProvider.php',
-                'search' => '$this->mapWebRoutes();' . '\r',
+                'search' => '$this->mapWebRoutes();',
                 'stub' => __DIR__ . '/../stubs/routes/map-register.stub',
                 'prefix' => false,
             ],

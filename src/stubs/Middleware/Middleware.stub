@@ -15,10 +15,10 @@ class RedirectIfNot{{singularClass}}
 	 * @param  string|null  $guard
 	 * @return mixed
 	 */
-	public function handle($request, Closure $next, $guard = '{{snakeSingular}}')
+	public function handle($request, Closure $next, $guard = '{{singularSnake}}')
 	{
 	    if (!Auth::guard($guard)->check()) {
-	        return redirect('{{snakeSingular}}/login');
+	        return redirect('{{singularSlug}}/login');
 	    }
 
 	    return $next($request);
