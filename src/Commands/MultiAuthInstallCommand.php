@@ -53,8 +53,8 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
         ]);
 
         $this->installWebRoutes();
-        
-        $this->info('Multi Auth with ' . $name . ' guard install successfully.');
+
+        $this->info('Multi Auth with ' . $name . ' guard successfully installed.');
     }
 
     /**
