@@ -6,7 +6,7 @@ use Hesto\Core\Commands\ReplaceContentCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 
-class InstallGuardCommand extends ReplaceContentCommand
+class InstallProviderCommand extends ReplaceContentCommand
 {
     /**
      * The console command name.
@@ -34,12 +34,12 @@ class InstallGuardCommand extends ReplaceContentCommand
 
     public function searchFor()
     {
-        return "'guards' => [";
+        return "'providers' => [";
     }
 
     public function replaceWith()
     {
-        return __DIR__ . '/../stubs/config/guards.stub';
+        return __DIR__ . '/../stubs/config/providers.stub';
     }
 
     /**

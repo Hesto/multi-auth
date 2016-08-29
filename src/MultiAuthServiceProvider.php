@@ -25,6 +25,7 @@ class MultiAuthServiceProvider extends ServiceProvider
     {
         $this->registerInstallCommand();
         $this->registerInstallGuardCommand();
+        $this->registerInstallProviderCommand();
     }
 
     /**
@@ -49,6 +50,18 @@ class MultiAuthServiceProvider extends ServiceProvider
         });
 
         $this->commands('command.hesto.multi-auth.guard');
+    }
+
+    /**
+     * Register the adminlte:install command.
+     */
+    private function registerInstallProviderCommand()
+    {
+        $this->app->singleton('command.hesto.multi-auth.provider', function ($app) {
+            return $app['Hesto\MultiAuth\Commands\InstallProviderCommand'];
+        });
+
+        $this->commands('command.hesto.multi-auth.provider');
     }
 
 }
