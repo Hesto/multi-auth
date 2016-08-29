@@ -58,16 +58,4 @@ class MultiAuthInstallCommand extends InstallCommand
             $this->info('Copied: ' . $path);
         }
     }
-
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['force', 'f', InputOption::VALUE_NONE, 'Force override existing files'],
-        ];
-    }
 }

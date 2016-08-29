@@ -29,12 +29,12 @@ class InstallGuardCommand extends ReplaceContentCommand
      */
     public function getPath()
     {
-        return 'config/auth.php';
+        return '/config/auth.php';
     }
 
     public function searchFor()
     {
-        return "\t\t'guards' => [";
+        return "'guards' => [";
     }
 
     public function replaceWith()

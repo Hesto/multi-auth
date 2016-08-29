@@ -1,4 +1,6 @@
-'{{pluralSnake}}' => [
-    'driver' => 'eloquent',
-    'model' => App\{{singularCamel}}::class,
-],
+
+        '{{pluralSnake}}' => [
+            'driver' => 'eloquent',
+            'model' => App\{{singularCamel}}::class,
+        ],
+        
