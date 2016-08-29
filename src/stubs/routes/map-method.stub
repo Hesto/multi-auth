@@ -11,7 +11,7 @@
             'middleware' => ['{{singularSnake}}', 'web'],
             'namespace' => $this->namespace,
         ], function ($router) {
-            require base_path('routes/singularSlug.php');
+            require base_path('routes/{{singularSlug}}.php');
         });
     }
 
