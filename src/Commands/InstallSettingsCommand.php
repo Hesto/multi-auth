@@ -6,7 +6,7 @@ use Hesto\Core\Commands\AppendContentCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 
-class InstallProviderCommand extends AppendContentCommand
+class InstallSettingsCommand extends AppendContentCommand
 {
     /**
      * The console command name.
