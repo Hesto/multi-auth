@@ -13,7 +13,7 @@ class InstallAuthModelCommand extends InstallFilesCommand
      *
      * @var string
      */
-    protected $name = 'multi-auth:files';
+    protected $name = 'multi-auth:model';
 
     /**
      * The console command description.
