@@ -3,12 +3,12 @@
 namespace Hesto\MultiAuth\Commands;
 
 use Hesto\Core\Traits\CanReplaceKeywords;
-use Hesto\Core\Commands\InstallCommand;
+use Hesto\Core\Commands\InstallAndReplaceCommand;
 use Symfony\Component\Console\Input\InputOption;
 use SplFileInfo;
 
 
-class MultiAuthInstallCommand extends InstallCommand
+class MultiAuthInstallCommand extends InstallAndReplaceCommand
 {
     use CanReplaceKeywords;
 
