@@ -26,6 +26,7 @@ class MultiAuthServiceProvider extends ServiceProvider
         $this->registerInstallCommand();
         $this->registerInstallGuardCommand();
         $this->registerInstallProviderCommand();
+        $this->registerInstallMiddlewareCommand();
     }
 
     /**
