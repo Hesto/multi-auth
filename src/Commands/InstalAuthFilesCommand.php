@@ -38,7 +38,7 @@ class InstallAuthFilesCommand extends InstallFilesCommand
             ],
             'middleware' => [
                 'path' => '/app/Http/Middleware/RedirectIfNot' . ucfirst($name) .'.php',
-                'stub' => __DIR__ . '/../stubs/routes/routes.stub',
+                'stub' => __DIR__ . '/../stubs/Middleware/Middleware.stub',
             ],
             'login_controller' => [
                 'path' => '/app/Http/Controllers/' . ucfirst($name) . 'Auth/' . 'LoginController.php',
