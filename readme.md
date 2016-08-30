@@ -54,20 +54,20 @@ Example: `http://project/admin/login`
 
 ### Step 4: Options
 
-If you don't want model and migration use `-m` flag.
+If you don't want model and migration use `--model` flag.
 ```
-php artisan multi-auth:install admin -f -m
-```
-
-If you don't want views use `-v` flag.
-```
-php artisan multi-auth:install admin -f -v
+php artisan multi-auth:install admin -f --model
 ```
 
-If you don't routes in your `routes/web.php` file, use `-r` flag.
+If you don't want views use `--views` flag.
+```
+php artisan multi-auth:install admin -f --views
+```
+
+If you don't want routes in your `routes/web.php` file, use `--routes` flag.
 
 ```
-php artisan multi-auth:install admin -f -r
+php artisan multi-auth:install admin -f --routes
 ```
 
 ### Files which are changed and added by this package

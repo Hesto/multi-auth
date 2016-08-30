@@ -134,9 +134,9 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
     {
         return [
             ['force', 'f', InputOption::VALUE_NONE, 'Force override existing files'],
-            ['model', 'm', InputOption::VALUE_NONE, 'Exclude model and migration'],
-            ['views', 'v', InputOption::VALUE_NONE, 'Exclude views'],
-            ['routes', 'r', InputOption::VALUE_NONE, 'Exclude routes'],
+            ['model', null, InputOption::VALUE_NONE, 'Exclude model and migration'],
+            ['views', null, InputOption::VALUE_NONE, 'Exclude views'],
+            ['routes', null, InputOption::VALUE_NONE, 'Exclude routes'],
         ];
     }
 }
