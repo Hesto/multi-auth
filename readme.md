@@ -3,7 +3,8 @@
 - `php artisan multi-auth:install {guard} -f`
 
 # TODO
-- Test Passwords Controllers (im not sure if it works yet)
+- Implement sendPasswordResetNotification() from `Illuminate\Auth\Passwords\CanResetPassword`
+  - reason: reset password link is invalid for custom guards because it is hardcoded in `Illuminate\Auth\Notifications\ResetPassword` class
 - Some code refactor (nothing to worry about)
 
 ## Usage
