@@ -2,7 +2,7 @@
 //{{singularClass}} Login
 Route::get('{{singularSlug}}/login', '{{singularClass}}Auth\LoginController@showLoginForm');
 Route::post('{{singularSlug}}/login', '{{singularClass}}Auth\LoginController@login');
-Route::post('{{singularSlug}}/logout', '{{singularClass}}Auth\LoginController@logout');
+Route::get('{{singularSlug}}/logout', '{{singularClass}}Auth\LoginController@logout');
 
 //{{singularClass}} Register
 Route::get('{{singularSlug}}/register', '{{singularClass}}Auth\RegisterController@showRegistrationForm');
