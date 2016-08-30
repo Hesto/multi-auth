@@ -3,7 +3,8 @@
 - `php artisan multi-auth:install {guard} -f`
 
 # TODO
-### Test Passwords Controllers (im not sure if it works yet)
+- Test Passwords Controllers (im not sure if it works yet)
+- Some code refactor (nothing to worry about)
 
 ## Usage
 
@@ -71,31 +72,31 @@ php artisan multi-auth:install admin -f -r
 
 ### Files which are changed and added by this package
 - config/auth.php
-add guards, providers, passwords
+  - add guards, providers, passwords
 
 - app/Http/Providers/RouteServiceProvider.php
 register routes
 
 - app/Http/Kernel.php
-register middleware
+  - register middleware
 
 - app/Http/Middleware/
-middleware for each guard
+  - middleware for each guard
 
 - app/Http/Controllers/{Guard}Auth/
-new controllers
+  - new controllers
 
 - app/Http/{Guard}.php
-new Model
+  - new Model
 
 - database/migrations/
-migration for new model
+  - migration for new model
 
 - routes/web.php
-register routes
+  - register routes
 
 - routes/{guard}.php
-routes file for given guard
+  - routes file for given guard
 
 - resources/views/{guard}/
-views for given guard
+  - views for given guard
