@@ -69,4 +69,33 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
 
         $this->appendFile($path, $file);
     }
+
+    /**
+     * Install Migration.
+     *
+     * @return bool
+     */
+    public function installMigration()
+    {
+        $name = $this->getNameInput();
+
+        $migrationDir = base_path() . '/database/migrations/';
+        $migrationName = 'create_' . str_plural(snake_case($name)) .'_table.php';
+        $migrationStub = new SplFileInfo(__DIR__ . '/../stubs/Model/migration.stub');
+
+        $files = $this->files->allFiles($migrationDir);
+
+        foreach ($files as $file) {
+            if(str_contains($file->getFilename(), $migrationName)) {
+                $this->putFile($file->getPath(), $migrationStub);
+
+                return true;
+            }
+        }
+
+        $path = $migrationDir . date('Y_m_d_His') . '_' . $migrationName;
+        $this->putFile($path, $migrationStub);
+
+        return true;
+    }
 }
