@@ -53,6 +53,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
         ]);
 
         $this->installWebRoutes();
+        $this->installMigration();
 
         $this->info('Multi Auth with ' . ucfirst($name) . ' guard successfully installed.');
     }

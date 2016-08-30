@@ -36,10 +36,10 @@ class AuthModelInstallCommand extends InstallFilesCommand
                 'path' => '/app/' . ucfirst(str_singular($name)) .'.php',
                 'stub' => __DIR__ . '/../stubs/Model/Model.stub',
             ],
-            'migration' => [
-                'path' => '/database/migrations/' . date('Y_m_d_His') . '_create_' . str_plural(snake_case($name)) .'_table.php',
-                'stub' => __DIR__ . '/../stubs/Model/migration.stub',
-            ],
+//            'migration' => [
+//                'path' => '/database/migrations/' . date('Y_m_d_His') . '_create_' . str_plural(snake_case($name)) .'_table.php',
+//                'stub' => __DIR__ . '/../stubs/Model/migration.stub',
+//            ],
         ];
     }
 }
