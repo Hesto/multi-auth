@@ -69,7 +69,7 @@ php artisan migrate
 Go to: `http://url_to_your_proejct/guard/login`
 Example: `http://project/admin/login`
 
-### Step 4: Options
+## Options
 
 If you don't want model and migration use `--model` flag.
 ```
@@ -87,7 +87,7 @@ If you don't want routes in your `routes/web.php` file, use `--routes` flag.
 php artisan multi-auth:install admin -f --routes
 ```
 
-### Files which are changed and added by this package
+## Files which are changed and added by this package
 - config/auth.php
   - add guards, providers, passwords
 
