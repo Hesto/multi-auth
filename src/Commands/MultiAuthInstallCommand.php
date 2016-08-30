@@ -5,6 +5,7 @@ namespace Hesto\MultiAuth\Commands;
 use Hesto\Core\Commands\InstallAndReplaceCommand;
 use Illuminate\Support\Facades\Artisan;
 use SplFileInfo;
+use Symfony\Component\Console\Input\InputOption;
 
 
 class MultiAuthInstallCommand extends InstallAndReplaceCommand
@@ -30,32 +31,48 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
      */
     public function fire()
     {
-        $name = mb_strtolower($this->getNameInput());
+        if($this->option('force')) {
+            $name = mb_strtolower($this->getNameInput());
 
-        Artisan::call('multi-auth:settings', [
-            'name' => $name,
-            '--force' => true
-        ]);
 
-        Artisan::call('multi-auth:files', [
-            'name' => $name,
-            '--force' => true
-        ]);
+            Artisan::call('multi-auth:settings', [
+                'name' => $name,
+                '--force' => true
+            ]);
 
-        Artisan::call('multi-auth:model', [
-            'name' => $name,
-            '--force' => true
-        ]);
+            Artisan::call('multi-auth:files', [
+                'name' => $name,
+                '--force' => true
+            ]);
 
-        Artisan::call('multi-auth:views', [
-            'name' => $name,
-            '--force' => true
-        ]);
+            if(!$this->option('model')) {
+                Artisan::call('multi-auth:model', [
+                    'name' => $name,
+                    '--force' => true
+                ]);
 
-        $this->installWebRoutes();
-        $this->installMigration();
+                $this->installMigration();
+            }
 
-        $this->info('Multi Auth with ' . ucfirst($name) . ' guard successfully installed.');
+            if(!$this->option('views')) {
+                Artisan::call('multi-auth:views', [
+                    'name' => $name,
+                    '--force' => true
+                ]);
+            }
+
+            if(!$this->option('routes')) {
+                $this->installWebRoutes();
+            }
+
+            $this->info('Multi Auth with ' . ucfirst($name) . ' guard successfully installed.');
+
+            return true;
+        }
+
+        $this->info('Use `-f` flag first.');
+
+        return true;
     }
 
     /**
@@ -98,5 +115,20 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
         $this->putFile($path, $migrationStub);
 
         return true;
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Force override existing files'],
+            ['model', 'm', InputOption::VALUE_NONE, 'Exclude model and migration'],
+            ['views', 'v', InputOption::VALUE_NONE, 'Exclude views'],
+            ['routes', 'r', InputOption::VALUE_NONE, 'Exclude routes'],
+        ];
     }
 }
