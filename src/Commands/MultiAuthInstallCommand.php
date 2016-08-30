@@ -88,7 +88,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
 
         foreach ($files as $file) {
             if(str_contains($file->getFilename(), $migrationName)) {
-                $this->putFile($file->getPath(), $migrationStub);
+                $this->putFile($file->getPathname(), $migrationStub);
 
                 return true;
             }
