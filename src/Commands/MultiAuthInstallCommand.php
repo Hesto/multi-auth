@@ -83,9 +83,17 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
     public function installWebRoutes()
     {
         $path = base_path() . '/routes/web.php';
-        $file = new SplFileInfo(__DIR__ . '/../stubs/routes/web.stub');
+        $stub = __DIR__ . '/../stubs/routes/web.stub';
 
-        $this->appendFile($path, $file);
+        if( ! $this->contentExists($path, $stub)) {
+            $file = new SplFileInfo($stub);
+            $this->appendFile($path, $file);
+
+            return true;
+        }
+
+        return false;
+
     }
 
     /**
