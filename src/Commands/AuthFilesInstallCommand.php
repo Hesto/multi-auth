@@ -29,32 +29,36 @@ class AuthFilesInstallCommand extends InstallFilesCommand
      */
     public function getFiles()
     {
-        $name = $this->getNameInput();
+        $name = $this->getParsedNameInput();
 
         return [
             'routes' => [
-                'path' => '/routes/' . str_singular($name) .'.php',
+                'path' => '/routes/' . $name .'.php',
                 'stub' => __DIR__ . '/../stubs/routes/routes.stub',
             ],
             'middleware' => [
-                'path' => '/app/Http/Middleware/RedirectIfNot' . ucfirst(str_singular($name)) .'.php',
+                'path' => '/app/Http/Middleware/RedirectIfNot' . ucfirst($name) .'.php',
                 'stub' => __DIR__ . '/../stubs/Middleware/Middleware.stub',
             ],
             'login_controller' => [
-                'path' => '/app/Http/Controllers/' . ucfirst(str_singular($name)) . 'Auth/' . 'LoginController.php',
+                'path' => '/app/Http/Controllers/' . ucfirst($name) . 'Auth/' . 'LoginController.php',
                 'stub' => __DIR__ . '/../stubs/Controllers/LoginController.stub',
             ],
             'register_controller' => [
-                'path' => '/app/Http/Controllers/' . ucfirst(str_singular($name)) . 'Auth/' . 'RegisterController.php',
+                'path' => '/app/Http/Controllers/' . ucfirst($name) . 'Auth/' . 'RegisterController.php',
                 'stub' => __DIR__ . '/../stubs/Controllers/RegisterController.stub',
             ],
             'forgot_password_controller' => [
-                'path' => '/app/Http/Controllers/' . ucfirst(str_singular($name)) . 'Auth/' . 'ForgotPasswordController.php',
+                'path' => '/app/Http/Controllers/' . ucfirst($name) . 'Auth/' . 'ForgotPasswordController.php',
                 'stub' => __DIR__ . '/../stubs/Controllers/ForgotPasswordController.stub',
             ],
             'reset_password_controller' => [
-                'path' => '/app/Http/Controllers/' . ucfirst(str_singular($name)) . 'Auth/' . 'ResetPasswordController.php',
+                'path' => '/app/Http/Controllers/' . ucfirst($name) . 'Auth/' . 'ResetPasswordController.php',
                 'stub' => __DIR__ . '/../stubs/Controllers/ResetPasswordController.stub',
+            ],
+            'reset_password_notification' => [
+                'path' => '/app/Notifications/' . ucfirst($name) .'ResetPassword.php',
+                'stub' => __DIR__ . '/../stubs/Notifications/ResetPassword.stub',
             ],
         ];
     }

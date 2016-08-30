@@ -1,11 +1,27 @@
-# Hesto MultiAuth
+# Hesto MultiAuth for Laravel 5.3
 
 - `php artisan multi-auth:install {guard} -f`
 
-# TODO
-- Implement sendPasswordResetNotification() from `Illuminate\Auth\Passwords\CanResetPassword`
-  - reason: reset password link is invalid for custom guards because it is hardcoded in `Illuminate\Auth\Notifications\ResetPassword` class
-- Some code refactor (nothing to worry about)
+## What it does?
+With one simple command you can setup multi auth for your Laravel 5.3 project. The package installs:
+- Model
+- Migration
+- Controllers
+- Notification
+- Routes
+  - routes/web.php
+    - {guard}/login
+    - {guard}/register
+    - {guard}/logout
+    - password reset routes
+  - routes/{guard}.php
+    - {guard}/home
+- Middleware
+- Views
+- Guard
+- Provider
+- Password Broker
+- Settings 
 
 ## Usage
 
@@ -76,7 +92,7 @@ php artisan multi-auth:install admin -f --routes
   - add guards, providers, passwords
 
 - app/Http/Providers/RouteServiceProvider.php
-register routes
+  - register routes
 
 - app/Http/Kernel.php
   - register middleware

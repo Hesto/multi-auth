@@ -40,9 +40,9 @@ class AuthViewsInstallCommand extends InstallAndReplaceCommand
      */
     public function installViews()
     {
-        $name = $this->getNameInput();
+        $name = $this->getParsedNameInput();
 
-        $path = '/resources/views/' . str_singular($name) . '/';
+        $path = '/resources/views/' . $name . '/';
         $views = __DIR__ . '/../stubs/views/';
 
         if($this->installFiles($path, $this->files->allFiles($views))) {

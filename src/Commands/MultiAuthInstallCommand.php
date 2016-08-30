@@ -32,7 +32,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
     public function fire()
     {
         if($this->option('force')) {
-            $name = mb_strtolower($this->getNameInput());
+            $name = $this->getParsedNameInput();
 
 
             Artisan::call('multi-auth:settings', [
@@ -103,7 +103,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
      */
     public function installMigration()
     {
-        $name = $this->getNameInput();
+        $name = $this->getParsedNameInput();
 
         $migrationDir = base_path() . '/database/migrations/';
         $migrationName = 'create_' . str_plural(snake_case($name)) .'_table.php';
