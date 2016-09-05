@@ -105,6 +105,9 @@ php artisan multi-auth:install admin -f --routes
 
 - app/Http/{Guard}.php
   - new Model
+  
+- app/Notifications/{Guard}ResetPassword.php
+  - reset password notification
 
 - database/migrations/
   - migration for new model
@@ -117,3 +120,8 @@ php artisan multi-auth:install admin -f --routes
 
 - resources/views/{guard}/
   - views for given guard
+  
+## Change log
+
+### v1.0.3
+- changed deafult auth's layout name from `app.blade.php` to `auth.blade.php` 

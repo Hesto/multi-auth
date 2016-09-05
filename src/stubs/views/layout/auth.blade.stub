@@ -35,7 +35,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/{{singularSlug}}') }}">
-                    Laravel Multi Auth Guard {{singularClass}}
+                    Laravel Multi Auth Guard: {{singularClass}}
                 </a>
             </div>
 
