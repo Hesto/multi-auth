@@ -123,5 +123,35 @@ php artisan multi-auth:install admin -f --routes
   
 ## Change log
 
+### Note: Never install configurations with same guard again after installed new version of package. So if you already installed your `admin` guard, don't install it again after you update package to latest version. 
+
+### v1.0.4
+- added name and prefix to route group configuration in `RouteServiceProvider`
+
+```
+Route::group([
+    'prefix' => 'admin', //if you have older version of package (< v1.0.4) add this line,
+    'as' => 'admin.', //if you have older version of package (< v1.0.4) add this line (the DOT at the end is important), 
+    'middleware' => ['web', 'admin'],
+    'namespace' => $this->namespace,
+], function ($router) {
+    require base_path('routes/admin.php');
+});
+```
+
+- Now you will be able to name your routes without adding guard's name to route name in your `routes/{guard}.php` and your routes will be named (its important)
+
+```
+//New way
+Route::get('/home', function () { // <- no {guard} prefix and it has proper name (admin.home)
+    //content
+})->name('home'); // http://your-project/admin/home
+
+//Old way
+Route::get('/admin/home', function () { // <- with {guard} prefix
+    //content
+})->name('admin.home'); // http://your-project/admin/home
+```
+
 ### v1.0.3
 - changed deafult auth's layout name from `app.blade.php` to `auth.blade.php` 

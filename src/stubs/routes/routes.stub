@@ -2,5 +2,5 @@
 
 Route::get('/home', function () {
     dd(Auth::guard('{{singularSnake}}')->user());
-});
+})->name('home');
 
