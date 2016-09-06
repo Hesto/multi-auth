@@ -121,7 +121,7 @@ php artisan multi-auth:install admin -f --routes
 - resources/views/{guard}/
   - views for given guard
   
-## Change log
+## Changelog
 
 ### Note: Never install configurations with same guard again after installed new version of package. So if you already installed your `admin` guard, don't install it again after you update package to latest version. 
 
@@ -130,8 +130,8 @@ php artisan multi-auth:install admin -f --routes
 
 ```php
 Route::group([
-    'prefix' => 'admin', //if you have older version of package (< v1.0.4) add this line manually,
-    'as' => 'admin.', //if you have older version of package (< v1.0.4) add this line manually (the DOT at the end is important), 
+    'prefix' => 'admin', //if you have older version of package ( < v1.0.4) add this line manually,
+    'as' => 'admin.', //if you have older version of package ( < v1.0.4) add this line manually (the DOT at the end is important), 
     'middleware' => ['web', 'admin'],
     'namespace' => $this->namespace,
 ], function ($router) {
