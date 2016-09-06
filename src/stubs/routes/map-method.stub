@@ -9,6 +9,8 @@
     {
         Route::group([
             'middleware' => ['web', '{{singularSnake}}'],
+            'prefix' => '{{singularSlug}}',
+            'as' => '{{singularSlug}}.',
             'namespace' => $this->namespace,
         ], function ($router) {
             require base_path('routes/{{singularSlug}}.php');
