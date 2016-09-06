@@ -128,7 +128,7 @@ php artisan multi-auth:install admin -f --routes
 ### v1.0.4
 - added name and prefix to route group configuration in `RouteServiceProvider`
 
-```
+```php
 Route::group([
     'prefix' => 'admin', //if you have older version of package (< v1.0.4) add this line manually,
     'as' => 'admin.', //if you have older version of package (< v1.0.4) add this line manually (the DOT at the end is important), 
@@ -141,7 +141,7 @@ Route::group([
 
 - Now you will be able to name your routes without adding guard's name to route name in your `routes/{guard}.php` and your routes will be named (its important)
 
-```
+```php
 //New way
 Route::get('/home', function () { // <- no {guard} prefix and it has proper name (admin.home)
     //content
