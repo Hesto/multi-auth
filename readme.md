@@ -130,8 +130,8 @@ php artisan multi-auth:install admin -f --routes
 
 ```
 Route::group([
-    'prefix' => 'admin', //if you have older version of package (< v1.0.4) add this line,
-    'as' => 'admin.', //if you have older version of package (< v1.0.4) add this line (the DOT at the end is important), 
+    'prefix' => 'admin', //if you have older version of package (< v1.0.4) add this line manually,
+    'as' => 'admin.', //if you have older version of package (< v1.0.4) add this line manually (the DOT at the end is important), 
     'middleware' => ['web', 'admin'],
     'namespace' => $this->namespace,
 ], function ($router) {
