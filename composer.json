@@ -1,6 +1,7 @@
 {
     "name": "hesto/multi-auth",
     "description": "Multi Auth for Laravel 5.3",
+    "keywords": ["auth", "multi", "laravel"],
     "license": "MIT",
     "authors": [
         {
@@ -13,9 +14,6 @@
         "hesto/core": ">=1.0.3"
     },    
     "autoload": {
-        "classmap": [
-            "src/commands"
-        ],
         "psr-4": {
             "Hesto\\MultiAuth\\": "src/"
         }
