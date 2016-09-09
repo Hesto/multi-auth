@@ -8,7 +8,7 @@
     protected function map{{singularClass}}Routes()
     {
         Route::group([
-            'middleware' => ['web', '{{singularSnake}}'],
+            'middleware' => ['web', '{{singularSnake}}', 'auth:{{singularSnake}}'],
             'prefix' => '{{singularSlug}}',
             'as' => '{{singularSlug}}.',
             'namespace' => $this->namespace,
