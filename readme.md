@@ -125,6 +125,22 @@ php artisan multi-auth:install admin -f --routes
 
 ### Note: Never install configurations with same guard again after installed new version of package. So if you already installed your `admin` guard, don't install it again after you update package to latest version. 
 
+### v1.0.6
+- added `auth:{guard}` middleware to `app\Providers\RouteServiceProvider.php`. If you have installed multi-auth guard with old version add middleware manually:
+```php
+Route::group([
+    'middleware' => ['web', 'admin', 'auth:admin'], //you need to add the last middleware to array to fix it (version < v.1.0.6)
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => $this->namespace,
+], function ($router) {
+    require base_path('routes/admin.php');
+});
+```
+
+### v1.0.5
+- composer.json fix
+
 ### v1.0.4
 - added name and prefix to route group configuration in `RouteServiceProvider`
 
