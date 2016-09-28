@@ -128,6 +128,7 @@ php artisan multi-auth:install admin -f --routes
 ### v1.0.7
 - changed {guard}/logout route method from `get` to `post`
 - added `{guard}.guest` middleware to redirect from login page if user is already logged in
+- added home view after login
 
 ### v1.0.6
 - added `auth:{guard}` middleware to `app\Providers\RouteServiceProvider.php`. If you have installed multi-auth guard with old version add middleware manually:

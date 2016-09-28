@@ -5,6 +5,8 @@ Route::get('/home', function () {
     $users[] = Auth::guard()->user();
     $users[] = Auth::guard('{{singularSnake}}')->user();
 
-    dd($users);
+    //dd($users);
+
+    return view('{{singularSlug}}.home');
 })->name('home');
 
