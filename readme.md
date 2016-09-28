@@ -125,6 +125,10 @@ php artisan multi-auth:install admin -f --routes
 
 ### Note: Never install configurations with same guard again after installed new version of package. So if you already installed your `admin` guard, don't install it again after you update package to latest version. 
 
+### v1.0.7
+- changed {guard}/logout route method from `get` to `post`
+- added `{guard}.guest` middleware to redirect from login page if user is already logged in
+
 ### v1.0.6
 - added `auth:{guard}` middleware to `app\Providers\RouteServiceProvider.php`. If you have installed multi-auth guard with old version add middleware manually:
 ```php
