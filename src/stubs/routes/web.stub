@@ -1,19 +1,13 @@
 
-//{{singularClass}} Group Routes
 Route::group(['prefix' => '{{singularSlug}}'], function () {
-  //routes: [project]/{{singularSlug}}
-  
-  //{{singularClass}} Login
   Route::get('', '{{singularClass}}Auth\LoginController@showLoginForm');
   Route::get('/login', '{{singularClass}}Auth\LoginController@showLoginForm');
   Route::post('/login', '{{singularClass}}Auth\LoginController@login');
   Route::post('/logout', '{{singularClass}}Auth\LoginController@logout');
 
-  //{{singularClass}} Register
   Route::get('/register', '{{singularClass}}Auth\RegisterController@showRegistrationForm');
   Route::post('/register', '{{singularClass}}Auth\RegisterController@register');
 
-  //{{singularClass}} Passwords
   Route::post('/password/email', '{{singularClass}}Auth\ForgotPasswordController@sendResetLinkEmail');
   Route::post('/password/reset', '{{singularClass}}Auth\ResetPasswordController@reset');
   Route::get('/password/reset', '{{singularClass}}Auth\ForgotPasswordController@showLinkRequestForm');
