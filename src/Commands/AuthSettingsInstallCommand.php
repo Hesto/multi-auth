@@ -29,10 +29,8 @@ class AuthSettingsInstallCommand extends AppendContentCommand
      */
     public function getOptions()
     {
-        return [
-            ['force', 'f', InputOption::VALUE_NONE, 'Force override existing files'],
-            ['domain', false, InputOption::VALUE_NONE, 'Install in a subdomain'],
-        ];
+        $parentOptions = parent::getOptions();
+        return array_merge($parentOptions, [['domain', false, InputOption::VALUE_NONE, 'Install in a subdomain']]);
     }
 
     /**
