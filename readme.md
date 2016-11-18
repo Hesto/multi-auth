@@ -1,6 +1,7 @@
 # Hesto MultiAuth for Laravel 5.3
 
 - `php artisan multi-auth:install {guard} -f`
+- `php artisan multi-auth:install {guard} -f --domain`
 
 ## What it does?
 With one simple command you can setup multi auth for your Laravel 5.3 project. The package installs:
