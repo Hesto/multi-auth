@@ -78,7 +78,7 @@ class AuthSettingsInstallCommand extends AppendContentCommand
                 'search' => "    /**\n" . '     * Define the "web" routes for the application.',
                 'stub' => ! $domain
                     ? __DIR__ . '/../stubs/routes/map-method.stub'
-                    :  __DIR__ . '/../stubs/routes/map-method-domain.stub',
+                    :  __DIR__ . '/../stubs/domain-routes/map-method.stub',
                 'prefix' => true,
             ],
         ];

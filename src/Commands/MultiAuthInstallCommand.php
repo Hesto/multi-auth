@@ -88,7 +88,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
         $path = base_path() . '/routes/web.php';
         $stub = ! $this->option('domain')
             ? __DIR__ . '/../stubs/routes/web.stub'
-            : __DIR__ . '/../stubs/routes/web-domain.stub';
+            : __DIR__ . '/../stubs/domain-routes/web.stub';
 
         if( ! $this->contentExists($path, $stub)) {
             $file = new SplFileInfo($stub);
