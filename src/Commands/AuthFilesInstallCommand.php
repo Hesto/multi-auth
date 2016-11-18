@@ -23,6 +23,19 @@ class AuthFilesInstallCommand extends InstallFilesCommand
     protected $description = 'Install multi-auth files';
 
     /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Force override existing files'],
+            ['domain', false, InputOption::VALUE_NONE, 'Install in a subdomain'],
+        ];
+    }
+
+    /**
      * Get the destination path.
      *
      * @return string
@@ -30,6 +43,7 @@ class AuthFilesInstallCommand extends InstallFilesCommand
     public function getFiles()
     {
         $name = $this->getParsedNameInput();
+        $domain = $this->option('domain');
 
         return [
             'routes' => [
@@ -46,11 +60,15 @@ class AuthFilesInstallCommand extends InstallFilesCommand
             ],
             'login_controller' => [
                 'path' => '/app/Http/Controllers/' . ucfirst($name) . 'Auth/' . 'LoginController.php',
-                'stub' => __DIR__ . '/../stubs/Controllers/LoginController.stub',
+                'stub' => ! $domain
+                    ? __DIR__ . '/../stubs/Controllers/LoginController.stub'
+                    : __DIR__ . '/../stubs/DomainControllers/LoginController.stub',
             ],
             'register_controller' => [
                 'path' => '/app/Http/Controllers/' . ucfirst($name) . 'Auth/' . 'RegisterController.php',
-                'stub' => __DIR__ . '/../stubs/Controllers/RegisterController.stub',
+                'stub' => ! $domain
+                    ? __DIR__ . '/../stubs/Controllers/RegisterController.stub'
+                    : __DIR__ . '/../stubs/DomainControllers/RegisterController.stub',
             ],
             'forgot_password_controller' => [
                 'path' => '/app/Http/Controllers/' . ucfirst($name) . 'Auth/' . 'ForgotPasswordController.php',
@@ -58,11 +76,15 @@ class AuthFilesInstallCommand extends InstallFilesCommand
             ],
             'reset_password_controller' => [
                 'path' => '/app/Http/Controllers/' . ucfirst($name) . 'Auth/' . 'ResetPasswordController.php',
-                'stub' => __DIR__ . '/../stubs/Controllers/ResetPasswordController.stub',
+                'stub' => ! $domain
+                    ? __DIR__ . '/../stubs/Controllers/ResetPasswordController.stub'
+                    :  __DIR__ . '/../stubs/DomainControllers/ResetPasswordController.stub',
             ],
             'reset_password_notification' => [
                 'path' => '/app/Notifications/' . ucfirst($name) .'ResetPassword.php',
-                'stub' => __DIR__ . '/../stubs/Notifications/ResetPassword.stub',
+                'stub' => ! $domain
+                    ? __DIR__ . '/../stubs/Notifications/ResetPassword.stub'
+                    : __DIR__ . '/../stubs/DomainNotifications/ResetPassword.stub',
             ],
         ];
     }

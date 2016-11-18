@@ -23,12 +23,27 @@ class AuthSettingsInstallCommand extends AppendContentCommand
     protected $description = 'Install settings in files';
 
     /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Force override existing files'],
+            ['domain', false, InputOption::VALUE_NONE, 'Install in a subdomain'],
+        ];
+    }
+
+    /**
      * Get the destination path.
      *
      * @return string
      */
     public function getSettings()
     {
+        $domain = $this->option('domain');
+
         return [
             'guard' => [
                 'path' => '/config/auth.php',
@@ -63,7 +78,9 @@ class AuthSettingsInstallCommand extends AppendContentCommand
             'map_method' => [
                 'path' => '/app/Providers/RouteServiceProvider.php',
                 'search' => "    /**\n" . '     * Define the "web" routes for the application.',
-                'stub' => __DIR__ . '/../stubs/routes/map-method.stub',
+                'stub' => ! $domain
+                    ? __DIR__ . '/../stubs/routes/map-method.stub'
+                    :  __DIR__ . '/../stubs/routes/map-method-domain.stub',
                 'prefix' => true,
             ],
         ];

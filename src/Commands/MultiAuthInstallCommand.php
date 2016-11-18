@@ -33,15 +33,18 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
     {
         if($this->option('force')) {
             $name = $this->getParsedNameInput();
+            $domain = $this->option('domain');
 
 
             Artisan::call('multi-auth:settings', [
                 'name' => $name,
+                '--domain' => $domain,
                 '--force' => true
             ]);
 
             Artisan::call('multi-auth:files', [
                 'name' => $name,
+                '--domain' => $domain,
                 '--force' => true
             ]);
 
@@ -83,7 +86,9 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
     public function installWebRoutes()
     {
         $path = base_path() . '/routes/web.php';
-        $stub = __DIR__ . '/../stubs/routes/web.stub';
+        $stub = ! $this->option('domain')
+            ? __DIR__ . '/../stubs/routes/web.stub'
+            : __DIR__ . '/../stubs/routes/web-domain.stub';
 
         if( ! $this->contentExists($path, $stub)) {
             $file = new SplFileInfo($stub);
@@ -134,6 +139,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
     {
         return [
             ['force', 'f', InputOption::VALUE_NONE, 'Force override existing files'],
+            ['domain', false, InputOption::VALUE_NONE, 'Install in a subdomain'],
             ['model', null, InputOption::VALUE_NONE, 'Exclude model and migration'],
             ['views', null, InputOption::VALUE_NONE, 'Exclude views'],
             ['routes', null, InputOption::VALUE_NONE, 'Exclude routes'],
