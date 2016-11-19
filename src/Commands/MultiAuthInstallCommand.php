@@ -3,6 +3,9 @@
 namespace Hesto\MultiAuth\Commands;
 
 use Hesto\Core\Commands\InstallAndReplaceCommand;
+use Hesto\MultiAuth\Commands\Traits\OverridesCanReplaceKeywords;
+use Hesto\MultiAuth\Commands\Traits\OverridesGetArguments;
+use Hesto\MultiAuth\Commands\Traits\ParsesServiceInput;
 use Illuminate\Support\Facades\Artisan;
 use SplFileInfo;
 use Symfony\Component\Console\Input\InputOption;
@@ -10,6 +13,8 @@ use Symfony\Component\Console\Input\InputOption;
 
 class MultiAuthInstallCommand extends InstallAndReplaceCommand
 {
+    use OverridesCanReplaceKeywords, OverridesGetArguments, ParsesServiceInput;
+
     /**
      * The console command name.
      *
@@ -31,26 +36,39 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
      */
     public function fire()
     {
-        if($this->option('force')) {
+        if ($this->option('lucid') && ! $this->getParsedServiceInput()) {
+            $this->error('You must pass a Service name with the `--lucid` option.');
+
+            return true;
+        }
+
+        if ($this->option('force')) {
             $name = $this->getParsedNameInput();
             $domain = $this->option('domain');
+            $lucid = $this->option('lucid');
+            $service = $this->getParsedServiceInput() ?: null;
 
 
             Artisan::call('multi-auth:settings', [
                 'name' => $name,
+                'service' => $service,
                 '--domain' => $domain,
+                '--lucid' => $lucid,
                 '--force' => true
             ]);
 
             Artisan::call('multi-auth:files', [
                 'name' => $name,
+                'service' => $service,
                 '--domain' => $domain,
+                '--lucid' => $lucid,
                 '--force' => true
             ]);
 
             if(!$this->option('model')) {
                 Artisan::call('multi-auth:model', [
                     'name' => $name,
+                    '--lucid' => $lucid,
                     '--force' => true
                 ]);
 
@@ -60,6 +78,8 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
             if(!$this->option('views')) {
                 Artisan::call('multi-auth:views', [
                     'name' => $name,
+                    'service' => $service,
+                    '--lucid' => $lucid,
                     '--force' => true
                 ]);
             }
@@ -85,10 +105,30 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
      */
     public function installWebRoutes()
     {
+        $lucid = $this->option('lucid');
+        $domain = $this->option('domain');
+        $service = $this->getParsedServiceInput();
+
         $path = base_path() . '/routes/web.php';
-        $stub = ! $this->option('domain')
-            ? __DIR__ . '/../stubs/routes/web.stub'
-            : __DIR__ . '/../stubs/domain-routes/web.stub';
+        $stub = __DIR__ . '/../stubs/routes/web.stub';
+
+        if ($domain && ! $lucid) {
+            $stub = __DIR__ . '/../stubs/domain-routes/web.stub';
+        }
+
+        if ($lucid) {
+            $stub = ! $domain
+                ? __DIR__ . '/../stubs/Lucid/routes/web.stub'
+                : __DIR__ . '/../stubs/Lucid/domain-routes/web.stub';
+
+            $lucidPath =  base_path() . '/src/Services/' . studly_case($service) . '/Http/routes.php';
+            $lucidStub = __DIR__ . '/../stubs/Lucid/routes/map-method.stub';
+
+            if ( ! $this->contentExists($lucidPath, $lucidStub)) {
+                $lucidFile = new SplFileInfo($lucidStub);
+                $this->appendFile($lucidPath, $lucidFile);
+            }
+        }
 
         if( ! $this->contentExists($path, $stub)) {
             $file = new SplFileInfo($stub);
@@ -140,6 +180,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
         return [
             ['force', 'f', InputOption::VALUE_NONE, 'Force override existing files'],
             ['domain', false, InputOption::VALUE_NONE, 'Install in a subdomain'],
+            ['lucid', false, InputOption::VALUE_NONE, 'Lucid architecture'],
             ['model', null, InputOption::VALUE_NONE, 'Exclude model and migration'],
             ['views', null, InputOption::VALUE_NONE, 'Exclude views'],
             ['routes', null, InputOption::VALUE_NONE, 'Exclude routes'],

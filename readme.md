@@ -2,6 +2,7 @@
 
 - `php artisan multi-auth:install {guard} -f`
 - `php artisan multi-auth:install {guard} -f --domain`
+- `php artisan multi-auth:install {guard} {service} -f --lucid`
 
 ## What it does?
 With one simple command you can setup multi auth for your Laravel 5.3 project. The package installs:
