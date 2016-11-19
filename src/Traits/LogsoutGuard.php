@@ -1,6 +1,6 @@
 <?php
 
-namespace Hesto\MutliAuth\Traits;
+namespace Hesto\MultiAuth\Traits;
 
 trait LogsoutGuard
 {

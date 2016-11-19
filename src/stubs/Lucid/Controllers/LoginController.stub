@@ -5,7 +5,7 @@ namespace App\Services\{{singularServiceClass}}\Http\Controllers\{{singularClass
 use Lucid\Foundation\Http\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
-use Hesto\MutliAuth\Traits\LogsoutGuard;
+use Hesto\MultiAuth\Traits\LogsoutGuard;
 
 class LoginController extends Controller
 {
