@@ -124,7 +124,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
                 $this->appendFile($lucidPath, $lucidFile);
             }
 
-            if ( ! $this->contentExists($lucidPath, $stub)) {
+            if( ! $this->contentExists($lucidPath, $stub)) {
                 $file = new SplFileInfo($stub);
                 $this->appendFile($lucidPath, $file);
 
