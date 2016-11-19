@@ -1,6 +1,5 @@
 
 Route::group(['prefix' => '{{singularSlug}}'], function () {
-  Route::get('', '{{singularClass}}Auth\LoginController@showLoginForm');
   Route::get('/login', '{{singularClass}}Auth\LoginController@showLoginForm');
   Route::post('/login', '{{singularClass}}Auth\LoginController@login');
   Route::post('/logout', '{{singularClass}}Auth\LoginController@logout');
