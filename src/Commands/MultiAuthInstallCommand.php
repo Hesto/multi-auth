@@ -109,12 +109,6 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
         $domain = $this->option('domain');
         $service = $this->getParsedServiceInput();
 
-        $path = base_path() . '/routes/web.php';
-        $stub = __DIR__ . '/../stubs/routes/web.stub';
-
-        if ($domain && ! $lucid) {
-            $stub = __DIR__ . '/../stubs/domain-routes/web.stub';
-        }
 
         if ($lucid) {
             $stub = ! $domain
@@ -122,12 +116,30 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
                 : __DIR__ . '/../stubs/Lucid/domain-routes/web.stub';
 
             $lucidPath =  base_path() . '/src/Services/' . studly_case($service) . '/Http/routes.php';
-            $lucidStub = __DIR__ . '/../stubs/Lucid/routes/map-method.stub';
+            $lucidStub = ! $domain
+                ? __DIR__ . '/../stubs/Lucid/routes/map-method.stub'
+                : __DIR__ . '/../stubs/Lucid/domain-routes/map-method.stub';
 
             if ( ! $this->contentExists($lucidPath, $lucidStub)) {
                 $lucidFile = new SplFileInfo($lucidStub);
                 $this->appendFile($lucidPath, $lucidFile);
             }
+
+            if( ! $this->contentExists($lucidPath, $stub)) {
+                $file = new SplFileInfo($stub);
+                $this->appendFile($lucidPath, $file);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        $path = base_path() . '/routes/web.php';
+        $stub = __DIR__ . '/../stubs/routes/web.stub';
+
+        if ($domain) {
+            $stub = __DIR__ . '/../stubs/domain-routes/web.stub';
         }
 
         if( ! $this->contentExists($path, $stub)) {

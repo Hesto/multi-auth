@@ -58,7 +58,9 @@ class AuthSettingsInstallCommand extends AppendContentCommand
 
         // If --lucid was passed
         if ($lucid) {
-            return array_merge($settings, $this->getLucidSettings());
+            $lucidSettings = array_merge($settings, $this->getLucidSettings());
+            unset($lucidSettings['map_method']);
+            return $lucidSettings;
         }
 
         // Return the default general settings
