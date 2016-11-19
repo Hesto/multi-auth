@@ -20,7 +20,9 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers, LogsoutGuard:
+    use AuthenticatesUsers, LogsoutGuard {
+        LogsoutGuard::logout insteadof AuthenticatesUsers;
+    }
 
     /**
      * Where to redirect users after login / registration.

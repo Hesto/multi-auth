@@ -2,6 +2,9 @@
 
 namespace Hesto\MultiAuth\Traits;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 trait LogsoutGuard
 {
     /**
