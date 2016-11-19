@@ -1,0 +1,15 @@
+
+Route::group(['domain' => '{{singularSlug}}.' . env('APP_DOMAIN')], function () {
+  Route::get('', '{{singularClass}}Auth\LoginController@showLoginForm');
+  Route::get('/login', '{{singularClass}}Auth\LoginController@showLoginForm');
+  Route::post('/login', '{{singularClass}}Auth\LoginController@login');
+  Route::post('/logout', '{{singularClass}}Auth\LoginController@logout');
+
+  Route::get('/register', '{{singularClass}}Auth\RegisterController@showRegistrationForm');
+  Route::post('/register', '{{singularClass}}Auth\RegisterController@register');
+
+  Route::post('/password/email', '{{singularClass}}Auth\ForgotPasswordController@sendResetLinkEmail');
+  Route::post('/password/reset', '{{singularClass}}Auth\ResetPasswordController@reset');
+  Route::get('/password/reset', '{{singularClass}}Auth\ForgotPasswordController@showLinkRequestForm');
+  Route::get('/password/reset/{token}', '{{singularClass}}Auth\ResetPasswordController@showResetForm');
+});

@@ -1,6 +1,8 @@
 # Hesto MultiAuth for Laravel 5.3
 
 - `php artisan multi-auth:install {guard} -f`
+- `php artisan multi-auth:install {guard} -f --domain`
+- `php artisan multi-auth:install {guard} {service} -f --lucid`
 
 ## What it does?
 With one simple command you can setup multi auth for your Laravel 5.3 project. The package installs:
@@ -49,7 +51,7 @@ public function register()
 ```
 php artisan multi-auth:install {singular_lowercase_name_of_guard} -f
 
-//examples
+// Examples
 php artisan multi-auth:install admin -f
 php artisan multi-auth:install employee -f
 php artisan multi-auth:install customer -f
@@ -57,6 +59,23 @@ php artisan multi-auth:install customer -f
 
 Notice:
 If you don't provide `-f` flag, it will not work. It is a protection against accidental activation.
+
+Alternative:
+
+If you want to install Multi-Auth files in a subdomain you must pass the option `--domain`.
+```
+php artisan multi-auth:install admin -f --domain
+php artisan multi-auth:install employee -f --domain
+php artisan multi-auth:install customer -f --domain
+```
+
+To be able to use this feature properly, you should add a key to your .env file:
+```
+APP_DOMAIN=yourdomain.com
+```
+This will allow us to use it in the routes file, prefixing it with the domain feature from Laravel routing system.
+
+Using it like so: `['domain' => '{guard}.' . env('APP_DOMAIN')]`.
 
 ### Step 4: Migrate new model table 
 
