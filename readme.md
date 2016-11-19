@@ -106,6 +106,22 @@ If you don't want routes in your `routes/web.php` file, use `--routes` flag.
 php artisan multi-auth:install admin -f --routes
 ```
 
+## Note
+If you want to adapt the redirect path once your `guard` is logged out, add and override the following method in
+your {guard}Auth\LoginController:
+
+```php
+/**
+ * Get the path that we should redirect once logged out.
+ * Adaptable to user needs.
+ *
+ * @return string
+ */
+public function logoutToPath() {
+    return '/';
+}
+```
+
 ## Files which are changed and added by this package
 - config/auth.php
   - add guards, providers, passwords
