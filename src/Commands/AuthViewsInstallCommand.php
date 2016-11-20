@@ -70,7 +70,7 @@ class AuthViewsInstallCommand extends InstallAndReplaceCommand
             $path = '/src/Services/' . studly_case($service) . '/resources/views/' . $name . '/';
             $views = ! $this->option('domain')
                 ? __DIR__ . '/../stubs/Lucid/views/'
-                : __DIR__ . '/../stubs/Lucid/domain-views';
+                : __DIR__ . '/../stubs/Lucid/domain-views/';
         }
 
         if($this->installFiles($path, $this->files->allFiles($views))) {
