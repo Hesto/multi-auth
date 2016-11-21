@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\{{singularClass}}Auth;
+namespace App\Services\{{singularServiceClass}}\Http\Controllers\{{singularClass}}Auth;
 
-use App\Http\Controllers\Controller;
+use Lucid\Foundation\Http\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Hesto\MultiAuth\Traits\LogsoutGuard;
@@ -48,7 +48,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('{{singularSlug}}.auth.login');
+        return view('{{singularServiceSlug}}::{{singularSlug}}.auth.login');
     }
 
     /**

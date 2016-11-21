@@ -1,0 +1,4 @@
+
+
+        $routes{{singularClass}}Path = __DIR__ . '/../Http/{{singularSlug}}-routes.php';
+        $this->loadRoutesFile($router, $namespace, $routes{{singularClass}}Path);

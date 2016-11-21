@@ -1,0 +1,9 @@
+
+Route::group([
+    'middleware' => ['web', '{{singularSnake}}', 'auth:{{singularSnake}}'],
+    'prefix' => '{{singularSlug}}',
+    'as' => '{{singularSlug}}.',
+], function ($router) {
+    require __DIR__ . '/{{singularSlug}}-routes.php';
+});
+
