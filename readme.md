@@ -211,3 +211,8 @@ Route::get('/admin/home', function () { // <- with {guard} prefix
 
 ### v1.0.3
 - changed deafult auth's layout name from `app.blade.php` to `auth.blade.php` 
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/Hesto/multi-auth/badge.svg?style=beer-square)](https://beerpay.io/Hesto/multi-auth)  [![Beerpay](https://beerpay.io/Hesto/multi-auth/make-wish.svg?style=flat-square)](https://beerpay.io/Hesto/multi-auth?focus=wish)
