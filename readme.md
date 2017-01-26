@@ -138,7 +138,7 @@ public function logoutToPath() {
 - app/Http/Controllers/{Guard}Auth/
   - new controllers
 
-- app/Http/{Guard}.php
+- app/{Guard}.php
   - new Model
   
 - app/Notifications/{Guard}ResetPassword.php
