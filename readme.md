@@ -126,7 +126,7 @@ public function logoutToPath() {
 - config/auth.php
   - add guards, providers, passwords
 
-- app/Http/Providers/RouteServiceProvider.php
+- app/Providers/RouteServiceProvider.php
   - register routes
 
 - app/Http/Kernel.php
