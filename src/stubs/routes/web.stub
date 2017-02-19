@@ -1,14 +1,14 @@
 
 Route::group(['prefix' => '{{singularSlug}}'], function () {
-  Route::get('/login', '{{singularClass}}Auth\LoginController@showLoginForm');
+  Route::get('/login', '{{singularClass}}Auth\LoginController@showLoginForm')->name('login');
   Route::post('/login', '{{singularClass}}Auth\LoginController@login');
-  Route::post('/logout', '{{singularClass}}Auth\LoginController@logout');
+  Route::post('/logout', '{{singularClass}}Auth\LoginController@logout')->name('logout');
 
-  Route::get('/register', '{{singularClass}}Auth\RegisterController@showRegistrationForm');
+  Route::get('/register', '{{singularClass}}Auth\RegisterController@showRegistrationForm')->name('register');
   Route::post('/register', '{{singularClass}}Auth\RegisterController@register');
 
-  Route::post('/password/email', '{{singularClass}}Auth\ForgotPasswordController@sendResetLinkEmail');
-  Route::post('/password/reset', '{{singularClass}}Auth\ResetPasswordController@reset');
-  Route::get('/password/reset', '{{singularClass}}Auth\ForgotPasswordController@showLinkRequestForm');
+  Route::post('/password/email', '{{singularClass}}Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
+  Route::post('/password/reset', '{{singularClass}}Auth\ResetPasswordController@reset')->name('password.email');
+  Route::get('/password/reset', '{{singularClass}}Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
   Route::get('/password/reset/{token}', '{{singularClass}}Auth\ResetPasswordController@showResetForm');
 });
