@@ -85,7 +85,7 @@ php artisan migrate
 
 ### Step 5: Try it
 
-Go to: `http://url_to_your_proejct/guard/login`
+Go to: `http://url_to_your_project/guard/login`
 Example: `http://project/admin/login`
 
 ## Options
