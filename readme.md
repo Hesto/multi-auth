@@ -15,7 +15,9 @@ With one simple command you can setup multi auth for your Laravel 5.3 project. T
     - {guard}/login
     - {guard}/register
     - {guard}/logout
-    - password reset routes
+    - Password Reset Routes
+      - {guard}/password/reset
+      - {guard}/password/email
   - routes/{guard}.php
     - {guard}/home
 - Middleware
@@ -23,7 +25,7 @@ With one simple command you can setup multi auth for your Laravel 5.3 project. T
 - Guard
 - Provider
 - Password Broker
-- Settings 
+- Settings
 
 ## Usage
 
@@ -75,9 +77,9 @@ APP_DOMAIN=yourdomain.com
 ```
 This will allow us to use it in the routes file, prefixing it with the domain feature from Laravel routing system.
 
-Using it like so: `['domain' => '{guard}.' . env('APP_DOMAIN')]`.
+Using it like so: `['domain' => '{guard}.' . env('APP_DOMAIN')]`
 
-### Step 4: Migrate new model table 
+### Step 4: Migrate new model table
 
 ```
 php artisan migrate
@@ -85,8 +87,9 @@ php artisan migrate
 
 ### Step 5: Try it
 
-Go to: `http://url_to_your_project/guard/login`
-Example: `http://project/admin/login`
+Go to: `http://project_url/GuardName/login`
+
+Example: `http://myproject.dev/customer/login`
 
 ## Options
 
@@ -107,8 +110,8 @@ php artisan multi-auth:install admin -f --routes
 ```
 
 ## Note
-If you want to adapt the redirect path once your `guard` is logged out, add and override the following method in
-your {guard}Auth\LoginController:
+If you want to change the redirect path for once your `guard` is logged out. Add and override the following method in
+your {GuardName}Auth\LoginController:
 
 ```php
 /**
@@ -124,41 +127,41 @@ public function logoutToPath() {
 
 ## Files which are changed and added by this package
 - config/auth.php
-  - add guards, providers, passwords
+  - Add guards, providers, passwords
 
 - app/Http/Providers/RouteServiceProvider.php
-  - register routes
+  - Register routes
 
 - app/Http/Kernel.php
-  - register middleware
+  - Register middleware
 
 - app/Http/Middleware/
-  - middleware for each guard
+  - Middleware for each guard
 
 - app/Http/Controllers/{Guard}Auth/
-  - new controllers
+  - New controllers
 
 - app/{Guard}.php
-  - new Model
-  
+  - New Model
+
 - app/Notifications/{Guard}ResetPassword.php
-  - reset password notification
+  - Reset password notification
 
 - database/migrations/
-  - migration for new model
+  - Migration for new model
 
 - routes/web.php
-  - register routes
+  - Register routes
 
 - routes/{guard}.php
-  - routes file for given guard
+  - Routes file for given guard
 
 - resources/views/{guard}/
-  - views for given guard
-  
+  - Views for given guard
+
 ## Changelog
 
-### Note: Never install configurations with same guard again after installed new version of package. So if you already installed your `admin` guard, don't install it again after you update package to latest version. 
+### Note: Never install configurations with same guard again after installed new version of package. So if you already installed your `admin` guard, don't install it again after you update package to latest version.
 
 ### v1.0.7
 - changed {guard}/logout route method from `get` to `post`
@@ -187,7 +190,7 @@ Route::group([
 ```php
 Route::group([
     'prefix' => 'admin', //if you have older version of package ( < v1.0.4) add this line manually,
-    'as' => 'admin.', //if you have older version of package ( < v1.0.4) add this line manually (the DOT at the end is important), 
+    'as' => 'admin.', //if you have older version of package ( < v1.0.4) add this line manually (the DOT at the end is important),
     'middleware' => ['web', 'admin'],
     'namespace' => $this->namespace,
 ], function ($router) {
@@ -210,7 +213,7 @@ Route::get('/admin/home', function () { // <- with {guard} prefix
 ```
 
 ### v1.0.3
-- changed deafult auth's layout name from `app.blade.php` to `auth.blade.php` 
+- changed deafult auth's layout name from `app.blade.php` to `auth.blade.php`
 
 ## Support on Beerpay
 Hey dude! Help me out for a couple of :beers:!
