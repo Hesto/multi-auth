@@ -17,5 +17,12 @@
         "psr-4": {
             "Hesto\\MultiAuth\\": "src/"
         }
-    }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hesto\\MultiAuth\\MultiAuthServiceProvider"
+            ]
+        }
+    },
 }
