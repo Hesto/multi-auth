@@ -34,7 +34,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
      *
      * @return bool|null
      */
-    public function fire()
+    public function handle()
     {
         if ($this->option('lucid') && ! $this->getParsedServiceInput()) {
             $this->error('You must pass a Service name with the `--lucid` option.');
