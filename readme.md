@@ -4,6 +4,14 @@
 - `php artisan multi-auth:install {guard} -f --domain`
 - `php artisan multi-auth:install {guard} {service} -f --lucid`
 
+## Version Guidance
+
+| Version | Status     | Branch | Install                                  |
+|---------|------------|--------|------------------------------------------|
+| 1.x     | EOL        | 1.0    | composer require hesto/multi-auth        |
+| 2.x     | Latest     | 2.0    | composer require hesto/multi-auth 1.*    |
+
+
 ## What it does?
 With one simple command you can setup multi auth for your Laravel 5.3 project. The package installs:
 - Model
@@ -33,7 +41,7 @@ With one simple command you can setup multi auth for your Laravel 5.3 project. T
 composer require hesto/multi-auth
 ```
 
-### Step 2: Add the Service Provider
+### Step 2: Add the Service Provider (only for laravel lower than 5.5)
 
 You'll only want to use these package for local development, so you don't want to update the production `providers` array in `config/app.php`. Instead, add the provider in `app/Providers/AppServiceProvider.php`, like so:
 
