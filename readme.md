@@ -1,4 +1,4 @@
-# Hesto MultiAuth for Laravel 5.3 and 5.4
+# Hesto MultiAuth for Laravel 5.3 or higher
 
 - `php artisan multi-auth:install {guard} -f`
 - `php artisan multi-auth:install {guard} -f --domain`
@@ -6,10 +6,10 @@
 
 ## Version Guidance
 
-| Version | Status     | Branch | Install                                  |
-|---------|------------|--------|------------------------------------------|
-| 1.x     | EOL        | 1.0    | composer require hesto/multi-auth        |
-| 2.x     | Latest     | 2.0    | composer require hesto/multi-auth 1.*    |
+| Version | Laravel version |  Status         | Branch | Install                                  |
+|---------|-----------------|-----------------|--------|------------------------------------------|
+| 1.x     | 5.3 and 5.4     | EOL             | 1.0    | composer require hesto/multi-auth        |
+| 2.x     | 5.5             | Latest          | 2.0    | composer require hesto/multi-auth 1.*    |
 
 
 ## What it does?
