@@ -1,11 +1,11 @@
-# Hesto MultiAuth for Laravel 5.5 and higher
+# Hesto MultiAuth for Laravel 5.5 or higher
 
 - `php artisan multi-auth:install {guard} -f`
 - `php artisan multi-auth:install {guard} -f --domain`
 - `php artisan multi-auth:install {guard} {service} -f --lucid`
 
 ## What it does?
-With one simple command you can setup multi auth for your Laravel 5.3 project. The package installs:
+With one simple command you can setup multi auth for your Laravel 5.5 project. The package installs:
 - Model
 - Migration
 - Controllers
@@ -29,22 +29,13 @@ With one simple command you can setup multi auth for your Laravel 5.3 project. T
 
 ### Step 1: Install Through Composer
 
-```
-composer require hesto/multi-auth
+```shell
+composer require hesto/multi-auth --dev
 ```
 
 ### Step 2: Add the Service Provider
 
-You'll only want to use these package for local development, so you don't want to update the production `providers` array in `config/app.php`. Instead, add the provider in `app/Providers/AppServiceProvider.php`, like so:
-
-```php
-public function register()
-{
-	if ($this->app->environment() == 'local') {
-		$this->app->register('Hesto\MultiAuth\MultiAuthServiceProvider');
-	}
-}
-```
+Laravel 5.5 uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider. You'll only want to use these package for local development, so this package will be included in require-dev section. When your site is deployed to production you will remove dev packages.
 
 ### Step 3: Install Multi-Auth files in your project
 
