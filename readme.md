@@ -8,8 +8,8 @@
 
 | Version | Laravel version |  Status         | Branch | Install                                  |
 |---------|-----------------|-----------------|--------|------------------------------------------|
-| 1.x     | 5.3 and 5.4     | EOL             | 1.0    | composer require hesto/multi-auth        |
-| 2.x     | 5.5             | Latest          | 2.0    | composer require hesto/multi-auth 1.*    |
+| 1.x     | 5.3 and 5.4     | EOL             | 1.0    | composer require hesto/multi-auth 1.*    |
+| 2.x     | 5.5             | Latest          | 2.0    | composer require hesto/multi-auth        |
 
 
 ## What it does?
