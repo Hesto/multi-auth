@@ -1,4 +1,4 @@
-# Hesto MultiAuth for Laravel 5.5 or higher
+# Hesto MultiAuth for Laravel
 
 - `php artisan multi-auth:install {guard} -f`
 - `php artisan multi-auth:install {guard} -f --domain`
