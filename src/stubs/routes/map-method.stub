@@ -7,13 +7,10 @@
      */
     protected function map{{singularClass}}Routes()
     {
-        Route::group([
-            'middleware' => ['web', '{{singularSnake}}', 'auth:{{singularSnake}}'],
-            'prefix' => '{{singularSlug}}',
-            'as' => '{{singularSlug}}.',
-            'namespace' => $this->namespace,
-        ], function ($router) {
-            require base_path('routes/{{singularSlug}}.php');
-        });
+        Route::prefix('{{singularSlug}}')
+            ->middleware(['web', '{{singularSnake}}', 'auth:{{singularSnake}}'])
+            ->namespace($this->namespace)
+            ->name('{{singularSlug}}.')
+            ->group(base_path('routes/{{singularSlug}}.php'));
     }
 
