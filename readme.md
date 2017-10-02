@@ -1,11 +1,20 @@
-# Hesto MultiAuth for Laravel
+# Hesto MultiAuth for Laravel 5.3, 5.4, 5.5 (see version guidance)
 
 - `php artisan multi-auth:install {guard} -f`
 - `php artisan multi-auth:install {guard} -f --domain`
 - `php artisan multi-auth:install {guard} {service} -f --lucid`
 
+## Version Guidance
+
+| Version | Laravel version |  Status         | Branch | Install                                  |
+|---------|-----------------|-----------------|--------|------------------------------------------|
+| 1.x     | 5.3 and 5.4     | EOL             | 1.0    | composer require hesto/multi-auth 1.*    |
+| 2.x     | 5.5             | Latest          | 2.0    | composer require hesto/multi-auth        |
+
+
 ## What it does?
-With one simple command you can setup multi auth for your Laravel 5.5 project. The package installs:
+With one simple command you can setup multi auth for your Laravel project. The package installs:
+
 - Model
 - Migration
 - Controllers
@@ -15,7 +24,9 @@ With one simple command you can setup multi auth for your Laravel 5.5 project. T
     - {guard}/login
     - {guard}/register
     - {guard}/logout
-    - password reset routes
+    - Password Reset Routes
+      - {guard}/password/reset
+      - {guard}/password/email
   - routes/{guard}.php
     - {guard}/home
 - Middleware
@@ -23,7 +34,7 @@ With one simple command you can setup multi auth for your Laravel 5.5 project. T
 - Guard
 - Provider
 - Password Broker
-- Settings 
+- Settings
 
 ## Usage
 
@@ -33,7 +44,7 @@ With one simple command you can setup multi auth for your Laravel 5.5 project. T
 composer require hesto/multi-auth --dev
 ```
 
-### Step 2: Add the Service Provider
+### Step 2: Add the Service Provider (only for laravel lower than 5.5)
 
 Laravel 5.5 uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider. You'll only want to use these package for local development, so this package will be included in require-dev section. When your site is deployed to production you will remove dev packages.
 
@@ -66,9 +77,9 @@ APP_DOMAIN=yourdomain.com
 ```
 This will allow us to use it in the routes file, prefixing it with the domain feature from Laravel routing system.
 
-Using it like so: `['domain' => '{guard}.' . env('APP_DOMAIN')]`.
+Using it like so: `['domain' => '{guard}.' . env('APP_DOMAIN')]`
 
-### Step 4: Migrate new model table 
+### Step 4: Migrate new model table
 
 ```
 php artisan migrate
@@ -76,8 +87,9 @@ php artisan migrate
 
 ### Step 5: Try it
 
-Go to: `http://url_to_your_project/guard/login`
-Example: `http://project/admin/login`
+Go to: `http://project_url/GuardName/login`
+
+Example: `http://myproject.dev/customer/login`
 
 ## Options
 
@@ -98,8 +110,8 @@ php artisan multi-auth:install admin -f --routes
 ```
 
 ## Note
-If you want to adapt the redirect path once your `guard` is logged out, add and override the following method in
-your {guard}Auth\LoginController:
+If you want to change the redirect path for once your `guard` is logged out. Add and override the following method in
+your {GuardName}Auth\LoginController:
 
 ```php
 /**
@@ -115,37 +127,38 @@ public function logoutToPath() {
 
 ## Files which are changed and added by this package
 - config/auth.php
-  - add guards, providers, passwords
+  - Add guards, providers, passwords
 
 - app/Http/Providers/RouteServiceProvider.php
-  - register routes
+  - Register routes
 
 - app/Http/Kernel.php
-  - register middleware
+  - Register middleware
 
 - app/Http/Middleware/
-  - middleware for each guard
+  - Middleware for each guard
 
 - app/Http/Controllers/{Guard}Auth/
-  - new controllers
+  - New controllers
 
 - app/{Guard}.php
-  - new Model
-  
+  - New Model
+
 - app/Notifications/{Guard}ResetPassword.php
-  - reset password notification
+  - Reset password notification
 
 - database/migrations/
-  - migration for new model
+  - Migration for new model
 
 - routes/web.php
-  - register routes
+  - Register routes
 
 - routes/{guard}.php
-  - routes file for given guard
+  - Routes file for given guard
 
 - resources/views/{guard}/
-  - views for given guard
+
+- Views for given guard
 
 ## Support on Beerpay
 Hey dude! Help me out for a couple of :beers:!
