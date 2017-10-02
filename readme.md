@@ -14,6 +14,7 @@
 
 ## What it does?
 With one simple command you can setup multi auth for your Laravel project. The package installs:
+
 - Model
 - Migration
 - Controllers
@@ -39,22 +40,13 @@ With one simple command you can setup multi auth for your Laravel project. The p
 
 ### Step 1: Install Through Composer
 
-```
-composer require hesto/multi-auth
+```shell
+composer require hesto/multi-auth --dev
 ```
 
 ### Step 2: Add the Service Provider (only for laravel lower than 5.5)
 
-You'll only want to use these package for local development, so you don't want to update the production `providers` array in `config/app.php`. Instead, add the provider in `app/Providers/AppServiceProvider.php`, like so:
-
-```php
-public function register()
-{
-	if ($this->app->environment() == 'local') {
-		$this->app->register('Hesto\MultiAuth\MultiAuthServiceProvider');
-	}
-}
-```
+Laravel 5.5 uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider. You'll only want to use these package for local development, so this package will be included in require-dev section. When your site is deployed to production you will remove dev packages.
 
 ### Step 3: Install Multi-Auth files in your project
 
@@ -165,63 +157,8 @@ public function logoutToPath() {
   - Routes file for given guard
 
 - resources/views/{guard}/
-  - Views for given guard
 
-## Changelog
-
-### Note: Never install configurations with same guard again after installed new version of package. So if you already installed your `admin` guard, don't install it again after you update package to latest version.
-
-### v1.0.7
-- changed {guard}/logout route method from `get` to `post`
-- added `{guard}.guest` middleware to redirect from login page if user is already logged in
-- added home view after login
-
-### v1.0.6
-- added `auth:{guard}` middleware to `app\Providers\RouteServiceProvider.php`. If you have installed multi-auth guard with old version add middleware manually:
-```php
-Route::group([
-    'middleware' => ['web', 'admin', 'auth:admin'], //you need to add the last middleware to array to fix it (version < v.1.0.6)
-    'prefix' => 'admin',
-    'as' => 'admin.',
-    'namespace' => $this->namespace,
-], function ($router) {
-    require base_path('routes/admin.php');
-});
-```
-
-### v1.0.5
-- composer.json fix
-
-### v1.0.4
-- added name and prefix to route group configuration in `RouteServiceProvider`
-
-```php
-Route::group([
-    'prefix' => 'admin', //if you have older version of package ( < v1.0.4) add this line manually,
-    'as' => 'admin.', //if you have older version of package ( < v1.0.4) add this line manually (the DOT at the end is important),
-    'middleware' => ['web', 'admin'],
-    'namespace' => $this->namespace,
-], function ($router) {
-    require base_path('routes/admin.php');
-});
-```
-
-- Now you will be able to name your routes without adding guard's name to route name in your `routes/{guard}.php` and your routes will be named (its important)
-
-```php
-//New way
-Route::get('/home', function () { // <- no {guard} prefix and it has proper name (admin.home)
-    //content
-})->name('home'); // http://your-project/admin/home
-
-//Old way
-Route::get('/admin/home', function () { // <- with {guard} prefix
-    //content
-})->name('admin.home'); // http://your-project/admin/home
-```
-
-### v1.0.3
-- changed deafult auth's layout name from `app.blade.php` to `auth.blade.php`
+- Views for given guard
 
 ## Support on Beerpay
 Hey dude! Help me out for a couple of :beers:!

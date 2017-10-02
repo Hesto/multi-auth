@@ -33,7 +33,7 @@ class AuthViewsInstallCommand extends InstallAndReplaceCommand
      *
      * @return bool|null
      */
-    public function fire()
+    public function handle()
     {
         $this->installViews();
     }
