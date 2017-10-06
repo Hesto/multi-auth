@@ -1,4 +1,10 @@
 
+/*
+|--------------------------------------------------------------------------
+| {{singularClass}} Routes
+|--------------------------------------------------------------------------
+*/
+
 Route::group(['prefix' => '{{singularSlug}}'], function () {
   Route::get('/login', '{{singularClass}}Auth\LoginController@showLoginForm')->name('login');
   Route::post('/login', '{{singularClass}}Auth\LoginController@login');
