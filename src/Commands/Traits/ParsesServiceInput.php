@@ -2,6 +2,8 @@
 
 namespace Hesto\MultiAuth\Commands\Traits;
 
+use Illuminate\Support\Str;
+
 trait ParsesServiceInput
 {
     /**
@@ -11,7 +13,7 @@ trait ParsesServiceInput
      */
     protected function getParsedServiceInput()
     {
-        return mb_strtolower(str_singular($this->getServiceInput()));
+        return mb_strtolower(Str::singular($this->getServiceInput()));
     }
 
     /**

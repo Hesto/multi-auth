@@ -7,6 +7,7 @@ use Hesto\MultiAuth\Commands\Traits\OverridesCanReplaceKeywords;
 use Hesto\MultiAuth\Commands\Traits\OverridesGetArguments;
 use Hesto\MultiAuth\Commands\Traits\ParsesServiceInput;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
 use SplFileInfo;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -36,7 +37,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
      */
     public function fire()
     {
-        if ($this->option('lucid') && ! $this->getParsedServiceInput()) {
+        if ($this->option('lucid') && !$this->getParsedServiceInput()) {
             $this->error('You must pass a Service name with the `--lucid` option.');
 
             return true;
@@ -65,7 +66,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
                 '--force' => true
             ]);
 
-            if(!$this->option('model')) {
+            if (!$this->option('model')) {
                 Artisan::call('multi-auth:model', [
                     'name' => $name,
                     '--lucid' => $lucid,
@@ -76,7 +77,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
                 $this->installPasswordResetMigration();
             }
 
-            if(!$this->option('views')) {
+            if (!$this->option('views')) {
                 Artisan::call('multi-auth:views', [
                     'name' => $name,
                     'service' => $service,
@@ -85,7 +86,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
                 ]);
             }
 
-            if(!$this->option('routes')) {
+            if (!$this->option('routes')) {
                 $this->installWebRoutes();
             }
 
@@ -111,21 +112,21 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
         $service = $this->getParsedServiceInput();
 
         if ($lucid) {
-            $stub = ! $domain
+            $stub = !$domain
                 ? __DIR__ . '/../stubs/Lucid/routes/web.stub'
                 : __DIR__ . '/../stubs/Lucid/domain-routes/web.stub';
 
             $lucidPath =  base_path() . '/src/Services/' . studly_case($service) . '/Http/routes.php';
-            $lucidStub = ! $domain
+            $lucidStub = !$domain
                 ? __DIR__ . '/../stubs/Lucid/routes/map-method.stub'
                 : __DIR__ . '/../stubs/Lucid/domain-routes/map-method.stub';
 
-            if ( ! $this->contentExists($lucidPath, $lucidStub)) {
+            if (!$this->contentExists($lucidPath, $lucidStub)) {
                 $lucidFile = new SplFileInfo($lucidStub);
                 $this->appendFile($lucidPath, $lucidFile);
             }
 
-            if( ! $this->contentExists($lucidPath, $stub)) {
+            if (!$this->contentExists($lucidPath, $stub)) {
                 $file = new SplFileInfo($stub);
                 $this->appendFile($lucidPath, $file);
 
@@ -141,7 +142,7 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
             $stub = __DIR__ . '/../stubs/domain-routes/web.stub';
         }
 
-        if( ! $this->contentExists($path, $stub)) {
+        if (!$this->contentExists($path, $stub)) {
             $file = new SplFileInfo($stub);
             $this->appendFile($path, $file);
 
@@ -149,7 +150,6 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
         }
 
         return false;
-
     }
 
     /**
@@ -162,13 +162,13 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
         $name = $this->getParsedNameInput();
 
         $migrationDir = base_path() . '/database/migrations/';
-        $migrationName = 'create_' . str_plural(snake_case($name)) .'_table.php';
+        $migrationName = 'create_' . Str::plural(Str::snake($name)) . '_table.php';
         $migrationStub = new SplFileInfo(__DIR__ . '/../stubs/Model/migration.stub');
 
         $files = $this->files->allFiles($migrationDir);
 
         foreach ($files as $file) {
-            if(str_contains($file->getFilename(), $migrationName)) {
+            if (Str::contains($file->getFilename(), $migrationName)) {
                 $this->putFile($file->getPathname(), $migrationStub);
 
                 return true;
@@ -191,13 +191,13 @@ class MultiAuthInstallCommand extends InstallAndReplaceCommand
         $name = $this->getParsedNameInput();
 
         $migrationDir = base_path() . '/database/migrations/';
-        $migrationName = 'create_' . str_singular(snake_case($name)) .'_password_resets_table.php';
+        $migrationName = 'create_' . Str::singular(Str::snake($name)) . '_password_resets_table.php';
         $migrationStub = new SplFileInfo(__DIR__ . '/../stubs/Model/PasswordResetMigration.stub');
 
         $files = $this->files->allFiles($migrationDir);
 
         foreach ($files as $file) {
-            if(str_contains($file->getFilename(), $migrationName)) {
+            if (Str::contains($file->getFilename(), $migrationName)) {
                 $this->putFile($file->getPathname(), $migrationStub);
 
                 return true;

@@ -2,6 +2,8 @@
 
 namespace Hesto\MultiAuth\Commands\Traits;
 
+use Illuminate\Support\Str;
+
 trait OverridesCanReplaceKeywords
 {
     /**
@@ -11,7 +13,7 @@ trait OverridesCanReplaceKeywords
      */
     protected function getParsedNameInput()
     {
-        return mb_strtolower(str_singular($this->getNameInput()));
+        return mb_strtolower(Str::singular($this->getNameInput()));
     }
 
     /**
@@ -35,7 +37,7 @@ trait OverridesCanReplaceKeywords
         $name = $this->getParsedNameInput();
         $service = $this->getParsedServiceInput();
 
-        $name = str_plural($name);
+        $name = Str::plural($name);
 
         $plural = [
             '{{pluralCamel}}',
@@ -57,29 +59,29 @@ trait OverridesCanReplaceKeywords
         ];
 
         $replacePlural = [
-            camel_case($name),
-            str_slug($name),
-            snake_case($name),
-            ucfirst(camel_case($name)),
+            Str::camel($name),
+            Str::slug($name),
+            Str::snake($name),
+            ucfirst(Str::camel($name)),
         ];
 
         $replaceSingular = [
-            str_singular(camel_case($name)),
-            str_singular(str_slug($name)),
-            str_singular(snake_case($name)),
-            str_singular(ucfirst(camel_case($name))),
+            Str::singular(Str::camel($name)),
+            Str::singular(Str::slug($name)),
+            Str::singular(Str::snake($name)),
+            Str::singular(ucfirst(Str::camel($name))),
 
-            camel_case($service),
-            str_slug($service),
-            snake_case($service),
-            ucfirst(camel_case($service)),
+            Str::camel($service),
+            Str::slug($service),
+            Str::snake($service),
+            ucfirst(Str::camel($service)),
         ];
 
 
 
         $template = str_replace($plural, $replacePlural, $template);
         $template = str_replace($singular, $replaceSingular, $template);
-        $template = str_replace('{{Class}}', ucfirst(camel_case($name)), $template);
+        $template = str_replace('{{Class}}', ucfirst(Str::camel($name)), $template);
 
         return $template;
     }
